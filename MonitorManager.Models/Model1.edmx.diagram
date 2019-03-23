@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21602d08dce14694a35edce652df86b2" Name="Diagram1">
+        <EntityTypeShape EntityType="MonitorManagerModel.B_AppAuthor" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbButton" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbIcon" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbMenu" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbMenuButton" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbRole" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbRoleMenu" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbRoleMenuButton" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbUser" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.B_TbUserRole" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.Center_RTUChange" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.Center_Server" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.Center_StartState" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.ElementsChartsInfo_Tab" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.LocaInfo_Tab" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_COMMAND_TEMP" Width="1.5" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_AUTO" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_COMMAND" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_GPS" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_IMG" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_LOG" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_MANUAL" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_ONLINE" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_REM" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_STATE" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_DATA_Statistic" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_ITEM_TI" Width="1.5" PointX="14.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_ITEMTYPE" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_LOG" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_Basic" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_BI" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_COMMAND" Width="1.5" PointX="4.75" PointY="16.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_CONFIGDATA" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_CONFIGITEM" Width="1.5" PointX="6.75" PointY="16.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_ITEM" Width="1.5" PointX="8.75" PointY="16.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_WATERYIELD" Width="1.5" PointX="16.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_WRES" Width="1.5" PointX="10.75" PointY="16.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_STATE" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_RTU_ITEMCONFIG" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_LocaInfo_YY_RTU_ITEM" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_YY_RTU_ITEM" Width="1.5" PointX="18.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_YY_RTU_ITEM_Alarm" Width="1.5" PointX="18.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_YY_RTU_ItemType" Width="1.5" PointX="18.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.Image_Tab" Width="1.5" PointX="15.375" PointY="18.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_YY_DATA_AUTO" Width="1.5" PointX="17.375" PointY="18.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.AlarmCondition_Tab" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_Alarm_LocalInfo_Item" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.AlarmUser_Tab" Width="1.5" PointX="3.375" PointY="19.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.AlarmInfo_Tab" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.View_AlarmInfo_LocalInfo_Item" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MonitorManagerModel.YY_HS_DATA_AUTO" Width="1.5" PointX="5.375" PointY="19.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

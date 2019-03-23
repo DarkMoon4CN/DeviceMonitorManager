@@ -1,0 +1,12 @@
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\MonitorManager.Models.dll.config
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\MonitorManager.Models.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\MonitorManager.Models.pdb
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\EntityFramework.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\EntityFramework.xml
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\obj\Debug\MonitorManager.Models.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\obj\Debug\MonitorManager.Models.pdb
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Models\obj\Debug\MonitorManager.Models.csprojResolveAssemblyReference.cache

@@ -1,0 +1,857 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MonitorManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AlarmCondition_Tab">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="AlarmLevel" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Condition" Type="int" Nullable="false" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="10" Nullable="false" />
+    <Property Name="AlarmLevel" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AlarmInfo_Tab">
+    <Key>
+      <PropertyRef Name="AlarmId" />
+    </Key>
+    <Property Name="AlarmId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" />
+    <Property Name="AlarmContent" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Condition" Type="int" Nullable="false" />
+    <Property Name="AlarmLevel" Type="int" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AlarmTime" Type="datetime" Nullable="false" />
+    <Property Name="SendTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AlarmUser_Tab">
+    <Key>
+      <PropertyRef Name="OpenId" />
+      <PropertyRef Name="NickName" />
+    </Key>
+    <Property Name="OpenId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Province" Type="nvarchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="IMEI" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="B_AppAuthor">
+    <Key>
+      <PropertyRef Name="AppId" />
+    </Key>
+    <Property Name="AppId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppSecret" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="SafeCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AuthorType" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="B_TbButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="Icon" Type="varchar" MaxLength="512" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="Creater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="B_TbIcon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IconName" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="IconCssInfo" Type="varchar" MaxLength="512" />
+    <Property Name="Creater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="LinkAddress" Type="varchar" MaxLength="512" />
+    <Property Name="Icon" Type="varchar" MaxLength="512" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="Creater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="MenuType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbMenuButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuId" Type="int" Nullable="false" />
+    <Property Name="ButtonId" Type="int" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="512" />
+    <Property Name="Creater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbRoleMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="MenuId" Type="int" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbRoleMenuButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="MenuId" Type="int" Nullable="false" />
+    <Property Name="ButtonId" Type="int" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountName" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="RealName" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="IsAble" Type="bit" Nullable="false" />
+    <Property Name="IfChangePwd" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="512" />
+    <Property Name="Creater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updater" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="512" />
+    <Property Name="WorkNumber" Type="varchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="B_TbUserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Center_RTUChange">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+    </Key>
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PublicIP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RTUCount" Type="int" Nullable="false" />
+    <Property Name="DTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Center_Server">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+    </Key>
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PublicIP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RunTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="RegisterTime" Type="int" />
+    <Property Name="RTUCount" Type="int" />
+    <Property Name="DTime" Type="datetime" />
+    <Property Name="RunState" Type="nvarchar" MaxLength="10" />
+    <Property Name="SrartTime" Type="datetime" />
+    <Property Name="IP" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Center_StartState">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+      <PropertyRef Name="DTime" />
+    </Key>
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PublicIP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RunTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="DTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ElementsChartsInfo_Tab">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="DisplayAreaMax" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="DisplayAreaMin" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMax" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMin" Type="decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <EntityType Name="Image_Tab">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="AddTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocaInfo_Tab">
+    <Key>
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LocaManager" Type="nvarchar" MaxLength="10" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Altitude" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="AddTime" Type="datetime" />
+    <Property Name="Describe" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="YY_COMMAND_TEMP">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="NFOINDEX" />
+      <PropertyRef Name="CommandID" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NFOINDEX" Type="int" Nullable="false" />
+    <Property Name="CommandID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Data" Type="text" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="CorrectionVALUE" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="int" />
+    <Property Name="STTYPE" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="YY_DATA_COMMAND">
+    <Key>
+      <PropertyRef Name="CommandID" />
+      <PropertyRef Name="TM" />
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="CommandID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="STATE" Type="int" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="Command" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="YY_DATA_GPS">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Altitude" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Speed" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Bearing" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Accuracy" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="LocType" Type="int" />
+    <Property Name="IsRealTime" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_DATA_IMG">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="DATAVALUE" Type="image" />
+    <Property Name="INFO" Type="text" />
+    <Property Name="DATATYPE" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_DATA_LOG">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+      <PropertyRef Name="ERC" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="LOGID" Type="int" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="COUNT" Type="int" />
+    <Property Name="ERC" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_MANUAL">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="DATAVALUE" Type="text" />
+    <Property Name="DATATYPE" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_DATA_ONLINE">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DATACOUNT" Type="int" Nullable="false" />
+    <Property Name="Heartbeat" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_REM">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_DATA_STATE">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="STATEDATA" Type="nvarchar" MaxLength="40" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="1" />
+  </EntityType>
+  <EntityType Name="YY_DATA_Statistic">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="INTV" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="INTV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="MaxVal" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="MinVal" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="AvgVal" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="MSEVal" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="SDVal" Type="decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <EntityType Name="YY_HS_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DATAVALUE" Type="text" />
+    <Property Name="FFT" Type="text" />
+  </EntityType>
+  <EntityType Name="YY_ITEM_TI">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ItemIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_ITEMTYPE">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemTypeIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_LOG">
+    <Key>
+      <PropertyRef Name="LOGID" />
+    </Key>
+    <Property Name="LOGID" Type="int" Nullable="false" />
+    <Property Name="RTULOG" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="YY_RTU_Basic">
+    <Key>
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="10" />
+    <Property Name="NiceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="15" />
+  </EntityType>
+  <EntityType Name="YY_RTU_BI">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_RTU_COMMAND">
+    <Key>
+      <PropertyRef Name="CommandID" />
+    </Key>
+    <Property Name="CommandID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="State" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_RTU_CONFIGDATA">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ConfigID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ConfigVal" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="YY_RTU_CONFIGITEM">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ConfigID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ConfigItem" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemInteger" Type="int" Nullable="false" />
+    <Property Name="ItemDecimal" Type="int" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="bit" Nullable="false" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.YY_RTU_ITEMCONFIG”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="YY_RTU_ITEMCONFIG">
+    <Key>
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ConfigID" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_RTU_WATERYIELD">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="STREAM" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="STR_PAD" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="TM" Type="datetime" />
+    <Property Name="TYPE" Type="int" />
+  </EntityType>
+  <EntityType Name="YY_RTU_WRES">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="CODE" />
+    </Key>
+    <Property Name="STCD" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CODE" Type="int" Nullable="false" />
+    <Property Name="ADR_ZX" Type="int" />
+    <Property Name="COM_M" Type="int" />
+    <Property Name="ADR_M" Type="nvarchar" MaxLength="20" />
+    <Property Name="PORT_M" Type="int" />
+    <Property Name="COM_B" Type="int" />
+    <Property Name="ADR_B" Type="nvarchar" MaxLength="20" />
+    <Property Name="PORT_B" Type="int" />
+    <Property Name="PhoneNum" Type="nvarchar" MaxLength="15" />
+    <Property Name="SatelliteNum" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="YY_STATE">
+    <Key>
+      <PropertyRef Name="STATEID" />
+    </Key>
+    <Property Name="STATEID" Type="int" Nullable="false" />
+    <Property Name="RTUSTATE" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_Alarm_LocalInfo_Item”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_Alarm_LocalInfo_Item">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="DATAVALUE" />
+      <PropertyRef Name="AlarmLevel" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Condition" Type="int" Nullable="false" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="10" Nullable="false" />
+    <Property Name="AlarmLevel" Type="int" Nullable="false" />
+    <Property Name="NiceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_AlarmInfo_LocalInfo_Item”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_AlarmInfo_LocalInfo_Item">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="AlarmId" />
+      <PropertyRef Name="AlarmContent" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="AlarmLevel" />
+      <PropertyRef Name="State" />
+      <PropertyRef Name="AlarmTime" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="AlarmId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" />
+    <Property Name="AlarmContent" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Condition" Type="int" Nullable="false" />
+    <Property Name="AlarmLevel" Type="int" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AlarmTime" Type="datetime" Nullable="false" />
+    <Property Name="SendTime" Type="datetime" />
+    <Property Name="NiceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_LocaInfo_YY_RTU_ITEM”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_LocaInfo_YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ItemDecimal" Type="int" />
+    <Property Name="ItemInteger" Type="int" />
+    <Property Name="PlusOrMinus" Type="bit" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemIndex" Type="int" />
+    <Property Name="ItemTypeID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemTypeIndex" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_YY_DATA_AUTO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_YY_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="STCD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="TM" Type="datetime" Nullable="false" />
+    <Property Name="DOWNDATE" Type="datetime" />
+    <Property Name="NFOINDEX" Type="int" />
+    <Property Name="DATAVALUE" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="CorrectionVALUE" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="int" />
+    <Property Name="STTYPE" Type="nvarchar" MaxLength="10" />
+    <Property Name="NiceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ItemDecimal" Type="int" />
+    <Property Name="ItemInteger" Type="int" />
+    <Property Name="PlusOrMinus" Type="bit" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_YY_RTU_ITEM”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemName" />
+      <PropertyRef Name="ItemCode" />
+      <PropertyRef Name="ItemDecimal" />
+      <PropertyRef Name="ItemInteger" />
+      <PropertyRef Name="PlusOrMinus" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemDecimal" Type="int" Nullable="false" />
+    <Property Name="ItemInteger" Type="int" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="bit" Nullable="false" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemIndex" Type="int" />
+    <Property Name="ItemTypeID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemTypeIndex" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_YY_RTU_ITEM_Alarm”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_YY_RTU_ITEM_Alarm">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemName" />
+      <PropertyRef Name="ItemCode" />
+      <PropertyRef Name="ItemInteger" />
+      <PropertyRef Name="ItemDecimal" />
+      <PropertyRef Name="PlusOrMinus" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ItemInteger" Type="int" Nullable="false" />
+    <Property Name="ItemDecimal" Type="int" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="bit" Nullable="false" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+    <Property Name="DisplayAreaMin" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="DisplayAreaMax" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMin" Type="decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMax" Type="decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MonitorManager.dbo.View_YY_RTU_ItemType”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_YY_RTU_ItemType">
+    <Key>
+      <PropertyRef Name="TempID" />
+    </Key>
+    <Property Name="TempID" Type="bigint" Nullable="false" />
+    <Property Name="ItemTypeID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemID" Type="nvarchar" MaxLength="40" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ItemDecimal" Type="int" />
+    <Property Name="ItemInteger" Type="int" />
+    <Property Name="PlusOrMinus" Type="bit" />
+    <Property Name="Units" Type="nvarchar" MaxLength="20" />
+    <Property Name="ItemIndex" Type="int" />
+    <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemTypeIndex" Type="int" />
+  </EntityType>
+  <EntityContainer Name="MonitorManagerModelStoreContainer">
+    <EntitySet Name="AlarmCondition_Tab" EntityType="Self.AlarmCondition_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlarmInfo_Tab" EntityType="Self.AlarmInfo_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlarmUser_Tab" EntityType="Self.AlarmUser_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_AppAuthor" EntityType="Self.B_AppAuthor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbButton" EntityType="Self.B_TbButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbIcon" EntityType="Self.B_TbIcon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbMenu" EntityType="Self.B_TbMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbMenuButton" EntityType="Self.B_TbMenuButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbRole" EntityType="Self.B_TbRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbRoleMenu" EntityType="Self.B_TbRoleMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbRoleMenuButton" EntityType="Self.B_TbRoleMenuButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbUser" EntityType="Self.B_TbUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="B_TbUserRole" EntityType="Self.B_TbUserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Center_RTUChange" EntityType="Self.Center_RTUChange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Center_Server" EntityType="Self.Center_Server" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Center_StartState" EntityType="Self.Center_StartState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ElementsChartsInfo_Tab" EntityType="Self.ElementsChartsInfo_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image_Tab" EntityType="Self.Image_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocaInfo_Tab" EntityType="Self.LocaInfo_Tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_COMMAND_TEMP" EntityType="Self.YY_COMMAND_TEMP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_AUTO" EntityType="Self.YY_DATA_AUTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_COMMAND" EntityType="Self.YY_DATA_COMMAND" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_GPS" EntityType="Self.YY_DATA_GPS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_IMG" EntityType="Self.YY_DATA_IMG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_LOG" EntityType="Self.YY_DATA_LOG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_MANUAL" EntityType="Self.YY_DATA_MANUAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_ONLINE" EntityType="Self.YY_DATA_ONLINE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_REM" EntityType="Self.YY_DATA_REM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_STATE" EntityType="Self.YY_DATA_STATE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_DATA_Statistic" EntityType="Self.YY_DATA_Statistic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_HS_DATA_AUTO" EntityType="Self.YY_HS_DATA_AUTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_ITEM_TI" EntityType="Self.YY_ITEM_TI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_ITEMTYPE" EntityType="Self.YY_ITEMTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_LOG" EntityType="Self.YY_LOG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_Basic" EntityType="Self.YY_RTU_Basic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_BI" EntityType="Self.YY_RTU_BI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_COMMAND" EntityType="Self.YY_RTU_COMMAND" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_CONFIGDATA" EntityType="Self.YY_RTU_CONFIGDATA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_CONFIGITEM" EntityType="Self.YY_RTU_CONFIGITEM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_ITEM" EntityType="Self.YY_RTU_ITEM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_WATERYIELD" EntityType="Self.YY_RTU_WATERYIELD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_WRES" EntityType="Self.YY_RTU_WRES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_STATE" EntityType="Self.YY_STATE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YY_RTU_ITEMCONFIG" EntityType="Self.YY_RTU_ITEMCONFIG" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [YY_RTU_ITEMCONFIG].[ItemID] AS [ItemID], 
+    [YY_RTU_ITEMCONFIG].[ConfigID] AS [ConfigID]
+    FROM [dbo].[YY_RTU_ITEMCONFIG] AS [YY_RTU_ITEMCONFIG]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Alarm_LocalInfo_Item" EntityType="Self.View_Alarm_LocalInfo_Item" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Alarm_LocalInfo_Item].[TempID] AS [TempID], 
+    [View_Alarm_LocalInfo_Item].[STCD] AS [STCD], 
+    [View_Alarm_LocalInfo_Item].[ItemID] AS [ItemID], 
+    [View_Alarm_LocalInfo_Item].[Condition] AS [Condition], 
+    [View_Alarm_LocalInfo_Item].[DATAVALUE] AS [DATAVALUE], 
+    [View_Alarm_LocalInfo_Item].[AlarmLevel] AS [AlarmLevel], 
+    [View_Alarm_LocalInfo_Item].[NiceName] AS [NiceName], 
+    [View_Alarm_LocalInfo_Item].[ItemName] AS [ItemName]
+    FROM [dbo].[View_Alarm_LocalInfo_Item] AS [View_Alarm_LocalInfo_Item]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_AlarmInfo_LocalInfo_Item" EntityType="Self.View_AlarmInfo_LocalInfo_Item" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_AlarmInfo_LocalInfo_Item].[TempID] AS [TempID], 
+    [View_AlarmInfo_LocalInfo_Item].[AlarmId] AS [AlarmId], 
+    [View_AlarmInfo_LocalInfo_Item].[STCD] AS [STCD], 
+    [View_AlarmInfo_LocalInfo_Item].[ItemID] AS [ItemID], 
+    [View_AlarmInfo_LocalInfo_Item].[AlarmContent] AS [AlarmContent], 
+    [View_AlarmInfo_LocalInfo_Item].[Condition] AS [Condition], 
+    [View_AlarmInfo_LocalInfo_Item].[AlarmLevel] AS [AlarmLevel], 
+    [View_AlarmInfo_LocalInfo_Item].[State] AS [State], 
+    [View_AlarmInfo_LocalInfo_Item].[AlarmTime] AS [AlarmTime], 
+    [View_AlarmInfo_LocalInfo_Item].[SendTime] AS [SendTime], 
+    [View_AlarmInfo_LocalInfo_Item].[NiceName] AS [NiceName], 
+    [View_AlarmInfo_LocalInfo_Item].[ItemName] AS [ItemName]
+    FROM [dbo].[View_AlarmInfo_LocalInfo_Item] AS [View_AlarmInfo_LocalInfo_Item]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_LocaInfo_YY_RTU_ITEM" EntityType="Self.View_LocaInfo_YY_RTU_ITEM" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_LocaInfo_YY_RTU_ITEM].[TempID] AS [TempID], 
+    [View_LocaInfo_YY_RTU_ITEM].[STCD] AS [STCD], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemID] AS [ItemID], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemName] AS [ItemName], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemCode] AS [ItemCode], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemDecimal] AS [ItemDecimal], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemInteger] AS [ItemInteger], 
+    [View_LocaInfo_YY_RTU_ITEM].[PlusOrMinus] AS [PlusOrMinus], 
+    [View_LocaInfo_YY_RTU_ITEM].[Units] AS [Units], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemIndex] AS [ItemIndex], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemTypeID] AS [ItemTypeID], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemType] AS [ItemType], 
+    [View_LocaInfo_YY_RTU_ITEM].[ItemTypeIndex] AS [ItemTypeIndex]
+    FROM [dbo].[View_LocaInfo_YY_RTU_ITEM] AS [View_LocaInfo_YY_RTU_ITEM]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_YY_DATA_AUTO" EntityType="Self.View_YY_DATA_AUTO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_YY_DATA_AUTO].[TempID] AS [TempID], 
+    [View_YY_DATA_AUTO].[STCD] AS [STCD], 
+    [View_YY_DATA_AUTO].[ItemID] AS [ItemID], 
+    [View_YY_DATA_AUTO].[TM] AS [TM], 
+    [View_YY_DATA_AUTO].[DOWNDATE] AS [DOWNDATE], 
+    [View_YY_DATA_AUTO].[NFOINDEX] AS [NFOINDEX], 
+    [View_YY_DATA_AUTO].[DATAVALUE] AS [DATAVALUE], 
+    [View_YY_DATA_AUTO].[CorrectionVALUE] AS [CorrectionVALUE], 
+    [View_YY_DATA_AUTO].[DATATYPE] AS [DATATYPE], 
+    [View_YY_DATA_AUTO].[STTYPE] AS [STTYPE], 
+    [View_YY_DATA_AUTO].[NiceName] AS [NiceName], 
+    [View_YY_DATA_AUTO].[ItemName] AS [ItemName], 
+    [View_YY_DATA_AUTO].[Units] AS [Units], 
+    [View_YY_DATA_AUTO].[ItemCode] AS [ItemCode], 
+    [View_YY_DATA_AUTO].[ItemDecimal] AS [ItemDecimal], 
+    [View_YY_DATA_AUTO].[ItemInteger] AS [ItemInteger], 
+    [View_YY_DATA_AUTO].[PlusOrMinus] AS [PlusOrMinus]
+    FROM [dbo].[View_YY_DATA_AUTO] AS [View_YY_DATA_AUTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_YY_RTU_ITEM" EntityType="Self.View_YY_RTU_ITEM" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_YY_RTU_ITEM].[TempID] AS [TempID], 
+    [View_YY_RTU_ITEM].[ItemID] AS [ItemID], 
+    [View_YY_RTU_ITEM].[ItemName] AS [ItemName], 
+    [View_YY_RTU_ITEM].[ItemCode] AS [ItemCode], 
+    [View_YY_RTU_ITEM].[ItemDecimal] AS [ItemDecimal], 
+    [View_YY_RTU_ITEM].[ItemInteger] AS [ItemInteger], 
+    [View_YY_RTU_ITEM].[PlusOrMinus] AS [PlusOrMinus], 
+    [View_YY_RTU_ITEM].[Units] AS [Units], 
+    [View_YY_RTU_ITEM].[ItemIndex] AS [ItemIndex], 
+    [View_YY_RTU_ITEM].[ItemTypeID] AS [ItemTypeID], 
+    [View_YY_RTU_ITEM].[ItemType] AS [ItemType], 
+    [View_YY_RTU_ITEM].[ItemTypeIndex] AS [ItemTypeIndex]
+    FROM [dbo].[View_YY_RTU_ITEM] AS [View_YY_RTU_ITEM]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_YY_RTU_ITEM_Alarm" EntityType="Self.View_YY_RTU_ITEM_Alarm" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_YY_RTU_ITEM_Alarm].[TempID] AS [TempID], 
+    [View_YY_RTU_ITEM_Alarm].[ItemID] AS [ItemID], 
+    [View_YY_RTU_ITEM_Alarm].[ItemName] AS [ItemName], 
+    [View_YY_RTU_ITEM_Alarm].[ItemCode] AS [ItemCode], 
+    [View_YY_RTU_ITEM_Alarm].[ItemInteger] AS [ItemInteger], 
+    [View_YY_RTU_ITEM_Alarm].[ItemDecimal] AS [ItemDecimal], 
+    [View_YY_RTU_ITEM_Alarm].[PlusOrMinus] AS [PlusOrMinus], 
+    [View_YY_RTU_ITEM_Alarm].[Units] AS [Units], 
+    [View_YY_RTU_ITEM_Alarm].[DisplayAreaMin] AS [DisplayAreaMin], 
+    [View_YY_RTU_ITEM_Alarm].[DisplayAreaMax] AS [DisplayAreaMax], 
+    [View_YY_RTU_ITEM_Alarm].[AlarmAreaMin] AS [AlarmAreaMin], 
+    [View_YY_RTU_ITEM_Alarm].[AlarmAreaMax] AS [AlarmAreaMax]
+    FROM [dbo].[View_YY_RTU_ITEM_Alarm] AS [View_YY_RTU_ITEM_Alarm]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_YY_RTU_ItemType" EntityType="Self.View_YY_RTU_ItemType" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_YY_RTU_ItemType].[TempID] AS [TempID], 
+    [View_YY_RTU_ItemType].[ItemTypeID] AS [ItemTypeID], 
+    [View_YY_RTU_ItemType].[ItemID] AS [ItemID], 
+    [View_YY_RTU_ItemType].[ItemName] AS [ItemName], 
+    [View_YY_RTU_ItemType].[ItemCode] AS [ItemCode], 
+    [View_YY_RTU_ItemType].[ItemDecimal] AS [ItemDecimal], 
+    [View_YY_RTU_ItemType].[ItemInteger] AS [ItemInteger], 
+    [View_YY_RTU_ItemType].[PlusOrMinus] AS [PlusOrMinus], 
+    [View_YY_RTU_ItemType].[Units] AS [Units], 
+    [View_YY_RTU_ItemType].[ItemIndex] AS [ItemIndex], 
+    [View_YY_RTU_ItemType].[ItemType] AS [ItemType], 
+    [View_YY_RTU_ItemType].[ItemTypeIndex] AS [ItemTypeIndex]
+    FROM [dbo].[View_YY_RTU_ItemType] AS [View_YY_RTU_ItemType]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

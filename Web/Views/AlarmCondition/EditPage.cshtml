@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑告警信息</title>
+</head>
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="AlarmConditionEditForm" method="post" action="">
+            <table class="tableForm" width="100%">
+                <tr>
+                    <th>
+                        项目名称：
+                    </th>
+                    <td>
+                        <input type="hidden" name="STCD2" id="STCD2" />
+                        <input type="text" name="NiceName2" id="NiceName2" class="easyui-validatebox textbox" readonly
+                               data-options="required:true" style="width:170px;height:22px;" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        元素名称：
+                    </th>
+                    <td>
+                        <input type="hidden" name="ItemID2" id="ItemID2" />
+                        <input type="text" name="ItemName2" id="ItemName2" class="easyui-validatebox textbox" readonly
+                        data-options="required:true" style="width:170px;height:22px;" />
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警条件：
+                    </th>
+                    <td>
+                        <select id="Condition2" class="easyui-combobox" style="width:170px;">
+                            <option value="1" selected>大于</option>
+                            <option value="2">小于</option>
+                            <option value="3">等于</option>
+                            <option value="4">大于等于</option>
+                            <option value="5">小于等于</option>
+                            <option value="6">时长超过</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        数据值：
+                    </th>
+                    <td>
+                        <input type="text" name="DATAVALUE2" id="DATAVALUE2" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警等级：
+                    </th>
+                    <td>
+                        <input name="AlarmLevel2" id="AlarmLevel2" value="1" readonly class="easyui-numberspinner"
+                               data-options="required:true,min:1,max:5,editable:true" autocomplete="off" style="width:70px;height:22px;" />
+
+                    </td>
+                </tr>
+
+
+                @*<tr>
+                    <th>
+                        告警值下限：
+                    </th>
+                    <td>
+                        <input type="text" name="txtAlarmAreaMin" id="txtAlarmAreaMin" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警值上限：
+                    </th>
+                    <td>
+                        <input type="text" name="txtAlarmAreaMax" id="txtAlarmAreaMax" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        显示区最小值：
+                    </th>
+                    <td>
+                        <input type="text" name="txtDisplayAreaMin" id="txtDisplayAreaMin" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        显示区最大值：
+                    </th>
+                    <td>
+                        <input type="text" name="txtDisplayAreaMax" id="txtDisplayAreaMax" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>*@
+
+
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>

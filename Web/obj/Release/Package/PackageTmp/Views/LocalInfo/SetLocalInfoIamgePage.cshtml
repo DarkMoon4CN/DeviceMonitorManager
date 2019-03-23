@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>上传图片</title>
+</head>
+
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="SetLocalInfoIamgePage" method="post" enctype="multipart/form-data"  action="">
+            <table class="tableForm" width="100%">
+                <tr>
+                    <th>
+                        项目编号：
+                    </th>
+                    <td>
+                        <input type="text" name="txtSTCD3" id="txtSTCD3" class="easyui-validatebox textbox" readonly
+                               data-options="required:false" style="width:170px;height:22px;" disabled="disabled" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        项目名称：
+                    </th>
+                    <td>
+                        <input type="text" name="txtNiceName3" id="txtNiceName3" class="easyui-validatebox textbox" readonly
+                               data-options="required:false" style="width:170px;height:22px;" disabled="disabled" />
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th>
+                        选择图片：
+                    </th>
+                    <td>
+                        <input class="easyui-filebox" id="txtFile" name="txtFile" data-options="prompt:'选择图片...'" style="width:100%">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

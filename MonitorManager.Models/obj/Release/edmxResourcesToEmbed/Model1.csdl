@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MonitorManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MonitorManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="B_AppAuthor" EntityType="MonitorManagerModel.B_AppAuthor" />
+    <EntitySet Name="B_TbButton" EntityType="MonitorManagerModel.B_TbButton" />
+    <EntitySet Name="B_TbIcon" EntityType="MonitorManagerModel.B_TbIcon" />
+    <EntitySet Name="B_TbMenu" EntityType="MonitorManagerModel.B_TbMenu" />
+    <EntitySet Name="B_TbMenuButton" EntityType="MonitorManagerModel.B_TbMenuButton" />
+    <EntitySet Name="B_TbRole" EntityType="MonitorManagerModel.B_TbRole" />
+    <EntitySet Name="B_TbRoleMenu" EntityType="MonitorManagerModel.B_TbRoleMenu" />
+    <EntitySet Name="B_TbRoleMenuButton" EntityType="MonitorManagerModel.B_TbRoleMenuButton" />
+    <EntitySet Name="B_TbUser" EntityType="MonitorManagerModel.B_TbUser" />
+    <EntitySet Name="B_TbUserRole" EntityType="MonitorManagerModel.B_TbUserRole" />
+    <EntitySet Name="Center_RTUChange" EntityType="MonitorManagerModel.Center_RTUChange" />
+    <EntitySet Name="Center_Server" EntityType="MonitorManagerModel.Center_Server" />
+    <EntitySet Name="Center_StartState" EntityType="MonitorManagerModel.Center_StartState" />
+    <EntitySet Name="ElementsChartsInfo_Tab" EntityType="MonitorManagerModel.ElementsChartsInfo_Tab" />
+    <EntitySet Name="LocaInfo_Tab" EntityType="MonitorManagerModel.LocaInfo_Tab" />
+    <EntitySet Name="YY_COMMAND_TEMP" EntityType="MonitorManagerModel.YY_COMMAND_TEMP" />
+    <EntitySet Name="YY_DATA_AUTO" EntityType="MonitorManagerModel.YY_DATA_AUTO" />
+    <EntitySet Name="YY_DATA_COMMAND" EntityType="MonitorManagerModel.YY_DATA_COMMAND" />
+    <EntitySet Name="YY_DATA_GPS" EntityType="MonitorManagerModel.YY_DATA_GPS" />
+    <EntitySet Name="YY_DATA_IMG" EntityType="MonitorManagerModel.YY_DATA_IMG" />
+    <EntitySet Name="YY_DATA_LOG" EntityType="MonitorManagerModel.YY_DATA_LOG" />
+    <EntitySet Name="YY_DATA_MANUAL" EntityType="MonitorManagerModel.YY_DATA_MANUAL" />
+    <EntitySet Name="YY_DATA_ONLINE" EntityType="MonitorManagerModel.YY_DATA_ONLINE" />
+    <EntitySet Name="YY_DATA_REM" EntityType="MonitorManagerModel.YY_DATA_REM" />
+    <EntitySet Name="YY_DATA_STATE" EntityType="MonitorManagerModel.YY_DATA_STATE" />
+    <EntitySet Name="YY_DATA_Statistic" EntityType="MonitorManagerModel.YY_DATA_Statistic" />
+    <EntitySet Name="YY_ITEM_TI" EntityType="MonitorManagerModel.YY_ITEM_TI" />
+    <EntitySet Name="YY_ITEMTYPE" EntityType="MonitorManagerModel.YY_ITEMTYPE" />
+    <EntitySet Name="YY_LOG" EntityType="MonitorManagerModel.YY_LOG" />
+    <EntitySet Name="YY_RTU_Basic" EntityType="MonitorManagerModel.YY_RTU_Basic" />
+    <EntitySet Name="YY_RTU_BI" EntityType="MonitorManagerModel.YY_RTU_BI" />
+    <EntitySet Name="YY_RTU_COMMAND" EntityType="MonitorManagerModel.YY_RTU_COMMAND" />
+    <EntitySet Name="YY_RTU_CONFIGDATA" EntityType="MonitorManagerModel.YY_RTU_CONFIGDATA" />
+    <EntitySet Name="YY_RTU_CONFIGITEM" EntityType="MonitorManagerModel.YY_RTU_CONFIGITEM" />
+    <EntitySet Name="YY_RTU_ITEM" EntityType="MonitorManagerModel.YY_RTU_ITEM" />
+    <EntitySet Name="YY_RTU_WATERYIELD" EntityType="MonitorManagerModel.YY_RTU_WATERYIELD" />
+    <EntitySet Name="YY_RTU_WRES" EntityType="MonitorManagerModel.YY_RTU_WRES" />
+    <EntitySet Name="YY_STATE" EntityType="MonitorManagerModel.YY_STATE" />
+    <EntitySet Name="YY_RTU_ITEMCONFIG" EntityType="MonitorManagerModel.YY_RTU_ITEMCONFIG" />
+    <EntitySet Name="View_LocaInfo_YY_RTU_ITEM" EntityType="MonitorManagerModel.View_LocaInfo_YY_RTU_ITEM" />
+    <EntitySet Name="View_YY_RTU_ITEM" EntityType="MonitorManagerModel.View_YY_RTU_ITEM" />
+    <EntitySet Name="View_YY_RTU_ITEM_Alarm" EntityType="MonitorManagerModel.View_YY_RTU_ITEM_Alarm" />
+    <EntitySet Name="View_YY_RTU_ItemType" EntityType="MonitorManagerModel.View_YY_RTU_ItemType" />
+    <EntitySet Name="Image_Tab" EntityType="MonitorManagerModel.Image_Tab" />
+    <EntitySet Name="View_YY_DATA_AUTO" EntityType="MonitorManagerModel.View_YY_DATA_AUTO" />
+    <EntitySet Name="AlarmCondition_Tab" EntityType="MonitorManagerModel.AlarmCondition_Tab" />
+    <EntitySet Name="View_Alarm_LocalInfo_Item" EntityType="MonitorManagerModel.View_Alarm_LocalInfo_Item" />
+    <EntitySet Name="AlarmUser_Tab" EntityType="MonitorManagerModel.AlarmUser_Tab" />
+    <EntitySet Name="AlarmInfo_Tab" EntityType="MonitorManagerModel.AlarmInfo_Tab" />
+    <EntitySet Name="View_AlarmInfo_LocalInfo_Item" EntityType="MonitorManagerModel.View_AlarmInfo_LocalInfo_Item" />
+    <EntitySet Name="YY_HS_DATA_AUTO" EntityType="MonitorManagerModel.YY_HS_DATA_AUTO" />
+  </EntityContainer>
+  <EntityType Name="B_AppAuthor">
+    <Key>
+      <PropertyRef Name="AppId" />
+    </Key>
+    <Property Name="AppId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppSecret" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SafeCode" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="B_TbButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="Creater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="B_TbIcon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IconName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="IconCssInfo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Creater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="B_TbMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="LinkAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="Creater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MenuType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="B_TbMenuButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="ButtonId" Type="Int32" Nullable="false" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="B_TbRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Creater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="B_TbRoleMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="B_TbRoleMenuButton">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="ButtonId" Type="Int32" Nullable="false" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="B_TbUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="RealName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="IsAble" Type="Boolean" Nullable="false" />
+    <Property Name="IfChangePwd" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Creater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updater" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Position" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="WorkNumber" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="B_TbUserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Center_RTUChange">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+    </Key>
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PublicIP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RTUCount" Type="Int32" Nullable="false" />
+    <Property Name="DTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Center_Server">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+    </Key>
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PublicIP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RunTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegisterTime" Type="Int32" />
+    <Property Name="RTUCount" Type="Int32" />
+    <Property Name="DTime" Type="DateTime" Precision="3" />
+    <Property Name="RunState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SrartTime" Type="DateTime" Precision="3" />
+    <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Center_StartState">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+      <PropertyRef Name="PublicIP" />
+      <PropertyRef Name="DTime" />
+    </Key>
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PublicIP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RunTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ElementsChartsInfo_Tab">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayAreaMax" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="DisplayAreaMin" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMax" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMin" Type="Decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <EntityType Name="LocaInfo_Tab">
+    <Key>
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LocaManager" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="Altitude" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddTime" Type="DateTime" Precision="3" />
+    <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_COMMAND_TEMP">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="NFOINDEX" />
+      <PropertyRef Name="CommandID" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NFOINDEX" Type="Int32" Nullable="false" />
+    <Property Name="CommandID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="DATAVALUE" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="CorrectionVALUE" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="Int32" />
+    <Property Name="STTYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_DATA_COMMAND">
+    <Key>
+      <PropertyRef Name="CommandID" />
+      <PropertyRef Name="TM" />
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="CommandID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="STATE" Type="Int32" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="Command" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_DATA_GPS">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="Altitude" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Speed" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Bearing" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Accuracy" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="LocType" Type="Int32" />
+    <Property Name="IsRealTime" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_DATA_IMG">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="DATAVALUE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DATATYPE" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_DATA_LOG">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+      <PropertyRef Name="ERC" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LOGID" Type="Int32" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="COUNT" Type="Int32" />
+    <Property Name="ERC" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_MANUAL">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="DATAVALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DATATYPE" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_DATA_ONLINE">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DATACOUNT" Type="Int32" Nullable="false" />
+    <Property Name="Heartbeat" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_DATA_REM">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="DATAVALUE" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_DATA_STATE">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="STATEDATA" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DATAVALUE" Type="Decimal" Precision="20" Scale="1" />
+  </EntityType>
+  <EntityType Name="YY_DATA_Statistic">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="INTV" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaxVal" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="MinVal" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="AvgVal" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="MSEVal" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="SDVal" Type="Decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <EntityType Name="YY_ITEM_TI">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_ITEMTYPE">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTypeIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_LOG">
+    <Key>
+      <PropertyRef Name="LOGID" />
+    </Key>
+    <Property Name="LOGID" Type="Int32" Nullable="false" />
+    <Property Name="RTULOG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_Basic">
+    <Key>
+      <PropertyRef Name="STCD" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="Latitude" Type="Decimal" Precision="18" Scale="15" />
+  </EntityType>
+  <EntityType Name="YY_RTU_BI">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_COMMAND">
+    <Key>
+      <PropertyRef Name="CommandID" />
+    </Key>
+    <Property Name="CommandID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YY_RTU_CONFIGDATA">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ConfigID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ConfigVal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_CONFIGITEM">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ConfigID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ConfigItem" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemInteger" Type="Int32" Nullable="false" />
+    <Property Name="ItemDecimal" Type="Int32" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="Boolean" Nullable="false" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_WATERYIELD">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="STREAM" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="STR_PAD" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="TM" Type="DateTime" Precision="3" />
+    <Property Name="TYPE" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YY_RTU_WRES">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="CODE" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CODE" Type="Int32" Nullable="false" />
+    <Property Name="ADR_ZX" Type="Int32" />
+    <Property Name="COM_M" Type="Int32" />
+    <Property Name="ADR_M" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PORT_M" Type="Int32" />
+    <Property Name="COM_B" Type="Int32" />
+    <Property Name="ADR_B" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PORT_B" Type="Int32" />
+    <Property Name="PhoneNum" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="SatelliteNum" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_STATE">
+    <Key>
+      <PropertyRef Name="STATEID" />
+    </Key>
+    <Property Name="STATEID" Type="Int32" Nullable="false" />
+    <Property Name="RTUSTATE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_RTU_ITEMCONFIG">
+    <Key>
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ConfigID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_LocaInfo_YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemDecimal" Type="Int32" />
+    <Property Name="ItemInteger" Type="Int32" />
+    <Property Name="PlusOrMinus" Type="Boolean" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIndex" Type="Int32" />
+    <Property Name="ItemTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTypeIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="View_YY_RTU_ITEM">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemName" />
+      <PropertyRef Name="ItemCode" />
+      <PropertyRef Name="ItemDecimal" />
+      <PropertyRef Name="ItemInteger" />
+      <PropertyRef Name="PlusOrMinus" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemDecimal" Type="Int32" Nullable="false" />
+    <Property Name="ItemInteger" Type="Int32" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="Boolean" Nullable="false" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIndex" Type="Int32" />
+    <Property Name="ItemTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTypeIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="View_YY_RTU_ITEM_Alarm">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemName" />
+      <PropertyRef Name="ItemCode" />
+      <PropertyRef Name="ItemInteger" />
+      <PropertyRef Name="ItemDecimal" />
+      <PropertyRef Name="PlusOrMinus" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemInteger" Type="Int32" Nullable="false" />
+    <Property Name="ItemDecimal" Type="Int32" Nullable="false" />
+    <Property Name="PlusOrMinus" Type="Boolean" Nullable="false" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayAreaMin" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="DisplayAreaMax" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMin" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="AlarmAreaMax" Type="Decimal" Precision="20" Scale="10" />
+  </EntityType>
+  <EntityType Name="View_YY_RTU_ItemType">
+    <Key>
+      <PropertyRef Name="TempID" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="ItemTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemDecimal" Type="Int32" />
+    <Property Name="ItemInteger" Type="Int32" />
+    <Property Name="PlusOrMinus" Type="Boolean" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIndex" Type="Int32" />
+    <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTypeIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Image_Tab">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="View_YY_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DOWNDATE" Type="DateTime" Precision="3" />
+    <Property Name="NFOINDEX" Type="Int32" />
+    <Property Name="DATAVALUE" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="CorrectionVALUE" Type="Decimal" Precision="20" Scale="10" />
+    <Property Name="DATATYPE" Type="Int32" />
+    <Property Name="STTYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Units" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ItemDecimal" Type="Int32" />
+    <Property Name="ItemInteger" Type="Int32" />
+    <Property Name="PlusOrMinus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="AlarmCondition_Tab">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="AlarmLevel" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Condition" Type="Int32" Nullable="false" />
+    <Property Name="DATAVALUE" Type="Decimal" Nullable="false" Precision="20" Scale="10" />
+    <Property Name="AlarmLevel" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_Alarm_LocalInfo_Item">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="DATAVALUE" />
+      <PropertyRef Name="AlarmLevel" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Condition" Type="Int32" Nullable="false" />
+    <Property Name="DATAVALUE" Type="Decimal" Nullable="false" Precision="20" Scale="10" />
+    <Property Name="AlarmLevel" Type="Int32" Nullable="false" />
+    <Property Name="NiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AlarmUser_Tab">
+    <Key>
+      <PropertyRef Name="OpenId" />
+      <PropertyRef Name="NickName" />
+    </Key>
+    <Property Name="OpenId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NickName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Province" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IMEI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AlarmInfo_Tab">
+    <Key>
+      <PropertyRef Name="AlarmId" />
+    </Key>
+    <Property Name="AlarmId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STCD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="AlarmContent" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Condition" Type="Int32" Nullable="false" />
+    <Property Name="AlarmLevel" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AlarmTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SendTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="View_AlarmInfo_LocalInfo_Item">
+    <Key>
+      <PropertyRef Name="TempID" />
+      <PropertyRef Name="AlarmId" />
+      <PropertyRef Name="AlarmContent" />
+      <PropertyRef Name="Condition" />
+      <PropertyRef Name="AlarmLevel" />
+      <PropertyRef Name="State" />
+      <PropertyRef Name="AlarmTime" />
+    </Key>
+    <Property Name="TempID" Type="Int64" Nullable="false" />
+    <Property Name="AlarmId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STCD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="AlarmContent" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Condition" Type="Int32" Nullable="false" />
+    <Property Name="AlarmLevel" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AlarmTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SendTime" Type="DateTime" Precision="3" />
+    <Property Name="NiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YY_HS_DATA_AUTO">
+    <Key>
+      <PropertyRef Name="STCD" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TM" />
+    </Key>
+    <Property Name="STCD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ItemID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DATAVALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FFT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

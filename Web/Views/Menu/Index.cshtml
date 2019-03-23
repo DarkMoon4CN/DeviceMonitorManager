@@ -1,0 +1,363 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>菜单管理</title>
+    <link href="~/Scripts/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/js/common.js"></script>
+    <link href="~/Content/themes/table.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var mid = $("#menuId").val();
+            $.post("/Button/GetAuthPageButton", { "menuId": mid }, function (data) {
+                var temp = data.FirstParam;
+                var isSearch = false;
+                var toolbarData = [];
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].Code == "search") {
+                        isSearch = true;
+                        continue;
+                    }
+                    toolbarData.push({
+                        iconCls: temp[i].Icon,
+                        text: temp[i].ButtonName,
+                        handler: temp[i].Code + "Button()",
+                    });
+                }
+                let toolbar = { search: isSearch, success: true, toolbar: toolbarData };
+                var result = getToolBar(toolbar);
+                if (toolbar.search) {
+                    $("#ui_menu_dg").datagrid({
+                        url: "/Menu/GetMenuList",
+                        idField: 'ID',
+                        striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                        sortName: 'ID',
+                        sortOrder: 'asc',
+                        pageList: [20, 40, 60, 80, 100],
+                        frozenColumns: [[
+                                  { field: 'ID', title: '菜单ID', width: 60 },
+                                  { field: 'Name', title: '菜单名称', width: 150 },
+                        ]],
+                        columns: [[
+                                           { field: 'ParentId', title: '父节点ID', sortable: true, width: 80 },
+                                           { field: 'Code', title: '标识码', width: 120 },
+                                           { field: 'LinkAddress', title: '链接地址', width: 200 },
+                                           { field: 'Icon', title: '图标', width: 150 },
+                                           { field: 'Sort', title: '排序', sortable: true, width: 80 },
+                                           { field: 'UpdateTime', title: '最后更新时间', width: 130 },
+                                           { field: 'Updater', title: '最后更新人', width: 100 },
+                                           {
+                                               width: 100, title: '菜单类型', field: 'MenuType',
+                                               formatter: function (value, rec) {
+                                                   if (value == 0) {
+                                                       return '后台菜单';
+                                                   }
+                                                   else {
+                                                       return "前台菜单";
+                                                   }
+                                               }
+                                           },
+                                ]],
+                        toolbar: result.length == 0 ? null : result
+
+                    });
+                }
+                else {
+                    $.show_alert("提示", "无权限，请联系管理员！");
+                }
+            });
+
+            //回车搜索
+            $("#ui_menu_search").find('input').on('keyup', function (event) {
+                if (event.keyCode == '13') {
+                    searchdata();
+                }
+            })
+        });
+
+        //新增
+        function addButton() {
+            $("<div/>").dialog({
+                id: "ui_menu_add_dialog",
+                href: "/Menu/AddPage",
+                title: "添加菜单",
+                height: 300,
+                width: 400,
+                modal: true,
+                buttons: [{
+                    id: "ui_menu_add_btn",
+                    text: '添 加',
+                    handler: function () {
+                        $("#MenuAddForm").form("submit", {
+                            url: "/Menu/AddMenu",
+                            onSubmit: function (param) {
+                                param.Name = $("#txtMenuName").val();
+                                param.Code = $("#txtMenuCode").val();
+                                param.Icon = $("#comboxMenuIconTree").combotree("getValues").toString(); //$("#txtMenuIcon").val();
+                                param.Sort = $('#txtMenuSort').val();
+                                param.LinkAddress = $("#txtMenuLinkAddress").val();
+                                param.MenuType = $("#selMenuType").val();
+                               
+
+                                if ($(this).form('validate')) {
+                                    $('#ui_menu_edit_btn').linkbutton('disable');
+                                    return true;
+                                }
+                                else {
+                                    $('#ui_menu_add_btn').linkbutton('enable');
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_menu_add_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_menu_dg").datagrid("reload");
+                                    window.top.refreshTree();
+                                } else {
+                                    $('#ui_menu_add_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_menu_add_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    $("#txtMenuName").focus();
+                },
+                onClose: function () {
+                    $("#ui_menu_add_dialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        //修改
+        function editButton() {
+            var row = $("#ui_menu_dg").datagrid("getChecked");
+            if (row.length < 1) {
+                $.show_alert("提示", "请先选择要修改的菜单");
+                return;
+            }
+            $("<div/>").dialog({
+                id: "ui_menu_edit_dialog",
+                href: "/Menu/EditPage",
+                title: "修改菜单",
+                height: 300,
+                width: 400,
+                modal: true,
+                buttons: [{
+                    id: "ui_menu_edit_btn",
+                    text: '修 改',
+                    handler: function () {
+                        $("#MenuEditForm").form("submit", {
+                            url: "/Menu/EditMenu",
+                            onSubmit: function (param) {
+                                param.ID = $("#hidid").val();
+                                param.OriginalName = $("#hidoriginalName").val();
+                                param.Name = $("#txtMenuName").val()
+                                param.Code = $("#txtMenuCode").val();
+                                param.Icon = $("#comboxMenuIconTree").combotree("getValues").toString();
+                                param.Sort = $('#txtMenuSort').val();
+                                param.LinkAddress = $("#txtMenuLinkAddress").val();
+                                if ($(this).form('validate')) {
+                                    $('#ui_menu_add_btn').linkbutton('disable');
+                                    return true;
+                                }
+                                else {
+                                    $('#ui_menu_edit_btn').linkbutton('enable');
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_menu_edit_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_menu_dg").datagrid("reload");
+                                    window.top.location.reload();
+                                } else {
+                                    $('#ui_menu_edit_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_menu_edit_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    $("#hidid").val(row[0].ID);
+                    $("#hidoriginalName").val(row[0].Name);
+                    $("#txtMenuName").val(row[0].Name);
+                    $("#txtMenuCode").val(row[0].Code);
+                    $('#comboxMenuIconTree').combotree('setValue', row[0].Icon);
+                    $('#txtMenuSort').numberspinner('setValue', row[0].Sort);
+                    $("#txtMenuLinkAddress").val(row[0].LinkAddress);
+                },
+                onClose: function () {
+                    $("#ui_menu_edit_dialog").dialog('destroy');
+                }
+            });
+        }
+
+        //删除
+        function deleteButton() {
+            var rows = $("#ui_menu_dg").datagrid("getChecked");
+            if (rows.length < 1) {
+                $.show_alert("提示", "请先勾选要删除的按钮");
+                return;
+            }
+            $.messager.confirm('提示', '确定删除选中行吗？', function (r) {
+                if (r) {
+                    var ids = [];
+                    $.each(rows, function (i, row) {
+                        ids.push(row.ID);
+                    });
+                    $.ajax({
+                        url: "/Menu/DelMenu",
+                        data: {
+                            IDs: ids.join(',')
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.success) {
+                                $.show_alert("提示", data.msg);
+                                $("#ui_menu_dg").datagrid("reload").datagrid('clearSelections').datagrid('clearChecked');
+                                window.top.refreshTree();
+                            } else {
+                                $.show_alert("提示", data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        //分配按钮
+        function setmenuButton() {
+            var row = $("#ui_menu_dg").datagrid("getChecked");
+            if (row.length < 1) {
+                $.show_alert("提示", "请先勾选要分配按钮的菜单");
+                return;
+            }
+            if (row[0].ParentId == 0 || row[0].ParentId == "") {
+                $.show_alert("提示", "根节点无法分配按钮");
+                $("#ui_menu_dg").datagrid('clearSelections').datagrid('clearChecked');
+                return;
+            }
+
+            $("<div/>").dialog({
+                id: "setmenubuttondialog",
+                href: "/Menu/SetMenuButtonPage",
+                title: "分配按钮",
+                height: 200,
+                width: 400,
+                modal: true,
+                buttons: [{
+                    id: "btnmenubuttonsave",
+                    text: '保 存',
+                    handler: function () {
+                        $("#SetMenuButtonForm").form("submit", {
+                            url: "/Menu/SetMenuButton",
+                            onSubmit: function (param) {
+                                $('#btnmenubuttonsave').linkbutton('disable');
+                                param.MID = $("#hidid").val();
+                                param.BIDs = $("#comButtonTree").combotree("getValues").toString();
+                                if ($(this).form('validate')) {
+                                    return true;
+                                }
+                                else {
+                                    $('#btnmenubuttonsave').linkbutton('enable');   //恢复按钮
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');    //转成json格式
+                                if (dataJson.success) {
+                                    $("#setmenubuttondialog").dialog('destroy');  //销毁dialog对象
+                                    $.show_alert("提示", dataJson.msg);
+                                } else {
+                                    $('#btnmenubuttonsave').linkbutton('enable');    //恢复按钮
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }],
+                onLoad: function () {
+                    $("#hidid").val(row[0].ID);
+                    $("#txtMenuBtnName").val(row[0].Name);
+                    //获取此菜单配置的按钮 设置按钮 ui_menubutton_button 选中
+                    $.ajax({
+                        url: "/Menu/GetMenuButtonByMenuID?r=" + Math.random(),
+                        data: { MID: row[0].ID },
+                        success: function (data) {
+                            if (data != null && data != "") {
+                                $('#comButtonTree').combotree('setValues', data.split(','));
+                            }
+                        }
+                    });
+                },
+                onClose: function () {
+                    $("#setmenubuttondialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        //搜索
+        function searchdata() {
+            $("#ui_menu_dg").datagrid('load', {
+                Name: $("#txtSearchMenuName").val()
+            });
+            $("#ui_menu_dg").datagrid('clearSelections').datagrid('clearChecked');
+        }
+
+    </script>
+</head>
+<body>
+    <input type="hidden" id="menuId" value="@ViewBag.MenuId" />
+    <div id="ui_menu_layout" class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'north',split:true,border:true,collapsed:false" title="搜索条件" style="height:72px;">
+            <div id="ui_menu_search">
+                <table class="tableForm" style="height:28px;background:#f5f5f5;">
+                    <tr>
+                        <th height="20px">
+                            菜单名：
+                        </th>
+                        <td>
+                            <input name="txtSearchMenuName" id="txtSearchMenuName" class="easyui-validatebox textbox" style="width:170px;height:22px;" />
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                               onclick="searchdata();">搜索</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div data-options="region:'center',border:false">
+            <table id="ui_menu_dg" data-options="fit:true,border:false"></table>
+        </div>
+    </div>
+
+</body>
+</html>

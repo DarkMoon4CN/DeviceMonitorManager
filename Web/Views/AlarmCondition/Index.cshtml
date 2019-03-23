@@ -1,0 +1,337 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>告警管理</title>
+    <link href="~/Scripts/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/js/common.js"></script>
+    <link href="~/Content/themes/table.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var mid = $("#menuId").val();
+            $.post("/Button/GetAuthPageButton", { "menuId": mid }, function (data) {
+                var temp = data.FirstParam;
+                var isSearch = false;
+                var toolbarData = [];
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].Code == "search") {
+                        isSearch = true;
+                        continue;
+                    }
+                    toolbarData.push({
+                        iconCls: temp[i].Icon,
+                        text: temp[i].ButtonName,
+                        handler: temp[i].Code + "Button()",
+                    });
+                }
+                let toolbar = { search: isSearch, success: true, toolbar: toolbarData };
+                var result = getToolBar(toolbar);
+                if (toolbar.search) {
+                    $("#ui_user_dg").datagrid({
+                        url: "/AlarmCondition/GetAlarmConditionList",
+                        idField: 'TempID',
+                        striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                        sortOrder: 'asc',
+                        pageList: [20, 40, 60, 80, 100],
+                        columns: [[
+                             { width: 180, title: '项目编号', field: 'STCD' },
+                             { width: 180, title: '项目名称', field: 'NiceName' },
+                             { width: 180, title: '元素编号', field: 'ItemID' },
+                             { width: 180, title: '元素名称', field: 'ItemName' },
+                             { width: 180, title: '告警条件', field: 'Condition', hidden: 'true' },
+                             { width: 180, title: '告警条件', field: 'ConditionValue',formatter: function(value,row,index){
+                                 if (row.Condition == '1') {
+                                     return "大于";
+                                 } else if (row.Condition == '2') {
+                                     return "小于";
+                                 } else if (row.Condition == '3') {
+                                     return "等于";
+                                 }
+                                 else if (row.Condition == '4') {
+                                     return "大于等于";
+                                 }
+                                 else if (row.Condition == '5') {
+                                     return "小于等于";
+                                 }
+                                 else if (row.Condition == '6') {
+                                     return "时长超过";
+                                 }
+                             }},
+                             { width: 100, title: '数据值', field: 'DATAVALUE' },
+                             { width: 100, title: '告警等级', field: 'AlarmLevel' },
+                             //{ field: 'AlarmAreaMin', title: '告警值下限', width: 100 },
+                             //{ field: 'AlarmAreaMax', title: '告警值上限', width: 100 },
+                             //{ field: 'DisplayAreaMin', title: '显示区最小值', width: 100 },
+                             //{ field: 'DisplayAreaMax', title: '显示区最大值', width: 100 },
+                        ]],
+                        toolbar: result.length == 0 ? null : result
+                    });
+                }
+                else {
+                    $.show_alert("提示", "无权限，请联系管理员！");
+                }
+            });
+            //回车搜索
+            $("body").find('input').on('keyup', function (event) {
+                if (event.keyCode == '13') {
+                    search();
+                }
+            })
+        });
+        function addButton() {
+            $("<div/>").dialog({
+                id: "ui_user_add_dialog",
+                href: "/AlarmCondition/AddPage",
+                title: "添加告警信息",
+                height: 280,
+                width: 610,
+                modal: true,
+                buttons: [{
+                    id: "ui_user_add_btn",
+                    text: '添 加',
+                    handler: function () {
+                        $("#AlarmConditionAddForm").form("submit", {
+                            url: "/AlarmCondition/AddAlarmCondition",
+                            onSubmit: function (param) {
+                                param.STCD = $("#STCD1").combobox("getValues").toString();
+                                param.ItemID = $("#ItemID1").combobox("getValues").toString();
+                                param.Condition = $("#Condition1").val();
+                                param.DATAVALUE = $("#DATAVALUE1").val();
+                                param.AlarmLevel = $("#AlarmLevel1").numberspinner('getValue');
+
+                                //param.AlarmAreaMin = $("#txtAlarmAreaMin").val();
+                                //param.AlarmAreaMax = $("#txtAlarmAreaMax").val();
+                                //param.DisplayAreaMin = $("#txtDisplayAreaMin").val();
+                                //param.DisplayAreaMax = $("#txtDisplayAreaMax").val();
+                                //var validElement = [param.AlarmAreaMin, param.AlarmAreaMax, param.DisplayAreaMin, param.DisplayAreaMax];
+                                //var j = 0;
+                                //for (var i = 0; i < validElement.length; i++) {
+                                //    if (validElement[i] == '') {
+                                //        j = j + 1;
+                                //    }
+                                //}
+                                //if (j != 0 && j != 4) {
+                                //    $.show_alert("提示", "请将告警和显示区的限值按照规范(只能输入数字)填写完整！");
+                                //    return false;
+                                //}
+
+                                if (param.STCD == "" || param.ItemID == "")
+                                {
+                                    $.show_alert("提示", "项目与元素属必填项不能为空");
+                                    return  false;
+                                }
+
+                                if ($(this).form('validate')) {
+                                    $('#ui_user_add_btn').linkbutton('disable');
+                                    return true;
+                                }
+                                else {
+                                    $('#ui_user_add_btn').linkbutton('enable');
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_user_add_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_user_dg").datagrid("reload");
+                                } else {
+                                    $('#ui_user_add_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_user_add_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    $("#STCD1").focus();
+                },
+                onClose: function () {
+                    $("#ui_user_add_dialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        function editButton() {
+            var row = $("#ui_user_dg").datagrid("getChecked");
+            if (row.length < 1) {
+                $.show_alert("提示", "请先勾选要修改的告警信息");
+                return;
+            }
+            if (row.length > 1) {
+                $.show_alert("提示", "不支持批量修改告警信息");
+                $("#ui_user_dg").datagrid('clearSelections').datagrid('clearChecked');
+                return;
+            }
+            $("<div/>").dialog({
+                id: "ui_user_edit_dialog",
+                href: "/AlarmCondition/EditPage",
+                title: "修改告警信息",
+                height: 280,
+                width: 610,
+                modal: true,
+                buttons: [{
+                    id: "ui_user_edit_btn",
+                    text: '修 改',
+                    handler: function () {
+                        $("#AlarmConditionEditForm").form("submit", {
+                            url: "/AlarmCondition/EditAlarmCondition",
+                            onSubmit: function (param) {
+                                param.STCD = $("#STCD2").val();
+                                param.ItemID = $("#ItemID2").val();
+                                param.Condition = $("#Condition2").val();
+                                param.DATAVALUE = $("#DATAVALUE2").val();
+                                param.AlarmLevel = $("#AlarmLevel2").numberspinner('getValue');
+
+                                //param.AlarmAreaMin = $("#txtAlarmAreaMin").val();
+                                //param.AlarmAreaMax = $("#txtAlarmAreaMax").val();
+                                //param.DisplayAreaMin = $("#txtDisplayAreaMin").val();
+                                //param.DisplayAreaMax = $("#txtDisplayAreaMax").val();
+                                //var validElement = [param.AlarmAreaMin, param.AlarmAreaMax, param.DisplayAreaMin, param.DisplayAreaMax];
+                                //var j = 0;
+                                //for (var i = 0; i < validElement.length; i++) {
+                                //    if (validElement[i] == '') {
+                                //        j = j + 1;
+                                //    }
+                                //}
+                                //if (j != 0 && j != 4) {
+                                //    $.show_alert("提示", "请将告警和显示区的限值按照规范(只能输入数字)填写完整！");
+                                //    return false;
+                                //}
+
+                                if ($(this).form('validate')) {
+                                    $('#ui_user_edit_btn').linkbutton('disable');
+                                    return true;
+                                }
+                                else {
+                                    $('#ui_user_edit_btn').linkbutton('enable');
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_user_edit_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_user_dg").datagrid("reload");
+                                } else {
+                                    $('#ui_user_edit_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_user_edit_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    console.log(row);
+                    $('#STCD2').val(row[0].STCD);
+                    $('#NiceName2').val(row[0].STCD);
+
+                    $('#ItemID2').val(row[0].ItemID);
+                    $('#ItemName2').val(row[0].ItemName);
+
+                    $("#Condition2").val(row[0].Condition);
+                    $("#DATAVALUE2").val(row[0].DATAVALUE);
+                    $('#AlarmLevel2').numberspinner('setValue', row[0].AlarmLevel);
+
+                    //$("#txtAlarmAreaMin").val(row[0].AlarmAreaMin);
+                    //$('#txtAlarmAreaMax').val(row[0].AlarmAreaMax);
+                    //$("#txtDisplayAreaMin").val(row[0].DisplayAreaMin);
+                    //$('#txtDisplayAreaMax').val(row[0].DisplayAreaMax);
+
+                },
+                onClose: function () {
+                    $("#ui_user_edit_dialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        function deleteButton() {
+            var rows = $("#ui_user_dg").datagrid("getChecked");
+            if (rows.length < 1) {
+                $.show_alert("提示", "请先勾选要删除的告警信息");
+                return;
+            }
+            $.messager.confirm('提示', '确定删除选中行吗？', function (r) {
+                if (r) {
+                    var  del = [];
+                    $.each(rows, function (i, row) {
+                        del.push(row.STCD+"_"+row.ItemID+"_"+row.AlarmLevel);
+                    });
+                    $.ajax({
+                        url: "/AlarmCondition/DelAlarmCondition",
+                        data: {
+                            DelAlarmCondition: del.join(',')
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.success) {
+                                $.show_alert("提示", data.msg);
+                                $("#ui_user_dg").datagrid("reload").datagrid('clearSelections').datagrid('clearChecked');
+                            } else {
+                                $.show_alert("提示", data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function searchButton() {
+            $("#ui_user_dg").datagrid('load', {
+                NiceName: $("#sNiceName").val()
+            });
+            $("#ui_Icons_dg").datagrid('clearSelections').datagrid('clearChecked');
+        }
+    </script>
+</head>
+<body>
+
+    <input type="hidden" id="menuId" value="@ViewBag.MenuId" />
+    <div id="ui_user_search" class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'north',split:true,border:true,collapsed:false" title="搜索条件" style="height:72px;">
+            <div id="ui_user_search">
+                <table class="tableForm" style="height:28px;background:#f5f5f5;">
+                    <tr>
+                        <th>
+                            项目名称：
+                        </th>
+                        <td>
+                            <input name="sNiceName" id="sNiceName" class="easyui-validatebox textbox" style="width:170px;height:22px;" />
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                               onclick="searchButton();">搜索</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div data-options="region:'center',border:false">
+            <table id="ui_user_dg" data-options="fit:true,border:false"></table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加元素</title>
+</head>
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="ItemAddForm" method="post" action="">
+            <table class="tableForm" width="100%">
+
+                <tr>
+                    <th>
+                        元素编号：
+                    </th>
+                    <td>
+                        <input type="text" name="txtItemID1" id="txtItemID1" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        元素名称：
+                    </th>
+                    <td>
+                        <input type="text" name="txtItemName1" id="txtItemName1" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        元素标识：
+                    </th>
+                    <td>
+                        <input type="text" name="txtItemCode" id="txtItemCode" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        元素整数位：
+                    </th>
+                    <td>
+                        <input type="text" name="txtItemInteger" id="txtItemInteger" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th>
+                        元素小数位：
+                    </th>
+                    <td>
+                        <input type="text" name="txtItemDecimal" id="txtItemDecimal" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        是否负值：
+                    </th>
+                    <td>
+                        <select id="selPlusOrMinus" style="width">
+                            <option value="1" selected>是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        单位：
+                    </th>
+                    <td>
+                        <input type="text" name="txtUnits" id="txtUnits" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th>
+                        告警值下限：
+                    </th>
+                    <td>
+                        <input type="text" name="txtAlarmAreaMin" id="txtAlarmAreaMin" class="easyui-validatebox textbox"
+                              style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警值上限：
+                    </th>
+                    <td>
+                        <input type="text" name="txtAlarmAreaMax" id="txtAlarmAreaMax" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        显示区最小值：
+                    </th>
+                    <td>
+                        <input type="text" name="txtDisplayAreaMin" id="txtDisplayAreaMin" class="easyui-validatebox textbox"
+                                style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        显示区最大值：
+                    </th>
+                    <td>
+                        <input type="text" name="txtDisplayAreaMax" id="txtDisplayAreaMax" class="easyui-validatebox textbox"
+                               style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

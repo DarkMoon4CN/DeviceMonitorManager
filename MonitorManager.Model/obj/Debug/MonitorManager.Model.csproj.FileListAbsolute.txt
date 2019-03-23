@@ -1,0 +1,4 @@
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Model\bin\Debug\MonitorManager.Model.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Model\bin\Debug\MonitorManager.Model.pdb
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Model\obj\Debug\MonitorManager.Model.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\MonitorManager.Model\obj\Debug\MonitorManager.Model.pdb

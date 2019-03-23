@@ -1,0 +1,454 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>元素管理</title>
+    <link href="~/Scripts/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/js/common.js"></script>
+    <link href="~/Content/themes/table.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        $(function () {
+            var mid = $("#menuId").val();
+            $.post("/Button/GetAuthPageButton", { "menuId": mid }, function (data) {
+                var temp = data.FirstParam;
+                var isSearch = false;
+                var toolbarData = [];
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].Code == "search") {
+                        isSearch = true;
+                        continue;
+                    }
+                    toolbarData.push({
+                        iconCls: temp[i].Icon,
+                        text: temp[i].ButtonName,
+                        handler: temp[i].Code + "Button()",
+                    });
+                }
+                let toolbar = { search: isSearch, success: true, toolbar: toolbarData };
+                var result = getToolBar(toolbar);
+                if (toolbar.search) {
+                    var oldSelectId;
+                    $("#ui_user_dg").datagrid({
+                        url: "/Item/GetItemList",
+                        idField: 'TempID',
+                        striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                        sortName: 'TempID',
+                        sortOrder: 'asc',
+                        pageList: [20, 40, 60, 80, 100],
+                        frozenColumns: [[
+                                         { width: 100, title: '元素编号', field: 'ItemID' },
+                                         { width: 100, title: '元素名称', field: 'ItemName' },
+                        ]],
+                        columns: [[
+                                   { field: 'ItemCode', title: '元素标识', width: 100 },
+                                   { field: 'ItemInteger', title: '整数位', width: 100 },
+                                   { field: 'ItemDecimal', title: '小数位', width: 100 },
+                                   {
+                                       field: 'PlusOrMinus', title: '是否负值', width: 100,
+                                       formatter: function (value, row) {
+                                               if (row.PlusOrMinus == true ) {
+                                                   return "是";
+                                               }
+                                               else {
+                                                   return "否";
+                                               }
+                                           }
+                                   },
+                                   { field: 'Units', title: '单位', width: 100 },
+                                   { field: 'AlarmAreaMin', title: '告警值下限', width: 100 },
+                                   { field: 'AlarmAreaMax', title: '告警值上限', width: 100 },
+                                   { field: 'DisplayAreaMin', title: '显示区最小值', width: 130 },
+                                   { field: 'DisplayAreaMax', title: '显示区最大值', width: 130 },
+                        ]],
+                        toolbar: result.length == 0 ? null : result,
+                        onSelect: function (rowIndex, rowData) {
+                            if (oldSelectId == rowData.ItemID) {
+                                return;
+                            }
+                            oldSelectId = rowData.ID;
+                            var $ui_role_layout = $("#ui_user_search");
+                            var eastRoleUser = $ui_role_layout.layout("panel", "east");
+                            if (eastRoleUser.panel("options").collapsed) {   //判断是否展开
+                                $ui_role_layout.layout("expand", "east");
+                            }
+                            eastRoleUser.panel("setTitle", rowData.ItemName + " 所在分类");
+                            if ($("#ui_role_user_dg").data("datagrid")) {
+                                $("#ui_role_user_dg").datagrid({       //请求数据
+                                    url: "/Item/GetItemTypeList?ItemID=" + rowData.ItemID
+                                });
+                            } else {
+                                $("#ui_role_user_dg").datagrid({
+                                    url: "/Item/GetItemTypeList?ItemID=" + rowData.ItemID,
+                                    striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                                    idField: 'ID',
+                                    sortName: 'CreateTime',
+                                    sortOrder: 'asc',
+                                    pageList: [20, 40, 60, 80, 100],
+                                    columns: [[
+                                          { field: 'ItemTypeID', title: '分类编号', sortable: false, width:100 },
+                                          { field: 'ItemType', title: '分类名称', sortable: false, width: 150 },
+                                          { field: 'ItemIndex', title: '元素在其排序', sortable: false, width: 100,align: 'center' },
+                                          {
+                                              field: 'RemoveRel', title: '操作', width: 100, align: 'center',
+                                              formatter: function (value, row) {
+                                                  var remveData = "'" + rowData.ItemID + '_' + row.ItemTypeID + "'";
+                                                  return '<a href="#" onclick="removeRel(' + remveData + ')"><img src="/Content/themes/icon/DeleteRed.png"></a>';
+                                               }
+                                           }
+                                          ]]
+                                });
+                            }
+                        },
+                    });
+                }
+                else {
+                    $.show_alert("提示", "无权限，请联系管理员！");
+                }
+            });
+            //回车搜索
+            $("body").find('input').on('keyup', function (event) {
+                if (event.keyCode == '13') {
+                    search();
+                }
+            })
+        });
+
+        function addButton() {
+            $("<div/>").dialog({
+                id: "ui_user_add_dialog",
+                href: "/Item/AddPage",
+                title: "添加元素",
+                height: 460,
+                width: 610,
+                modal: true,
+                buttons: [{
+                    id: "ui_user_add_btn",
+                    text: '添 加',
+                    handler: function () {
+                        $("#ItemAddForm").form("submit", {
+                            url: "/Item/AddItem",
+                            onSubmit: function (param) {
+                                param.ItemID = $("#txtItemID1").val();
+                                param.ItemName = $("#txtItemName1").val();
+                                param.ItemCode = $("#txtItemCode").val();
+                                param.ItemInteger = $("#txtItemInteger").val();
+                                param.PlusOrMinus = $("#selPlusOrMinus").val();
+                                param.ItemDecimal = $("#txtItemDecimal").val();
+                                param.Units = $("#txtUnits").val();
+                                param.AlarmAreaMin = $("#txtAlarmAreaMin").val();
+                                param.AlarmAreaMax = $("#txtAlarmAreaMax").val();
+                                param.DisplayAreaMin = $("#txtDisplayAreaMin").val();
+                                param.DisplayAreaMax = $("#txtDisplayAreaMax").val();
+                                var validElement = [param.AlarmAreaMin, param.AlarmAreaMax, param.DisplayAreaMin, param.DisplayAreaMax];
+                                var j = 0;
+                                for (var i = 0; i < validElement.length; i++)
+                                {
+                                    if (validElement[i] == '')
+                                    {
+                                        j = j + 1;
+                                    }
+                                }
+                                if (j != 0 && j != 4)
+                                {
+                                    $.show_alert("提示", "请将告警和显示区的限值按照规范(只能输入数字)填写完整！");
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_user_add_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_user_dg").datagrid("reload");
+                                } else {
+                                    $('#ui_user_add_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_user_add_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    $("#txtItemName1").focus();
+                },
+                onClose: function () {
+                    $("#ui_user_add_dialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        function editButton() {
+            var row = $("#ui_user_dg").datagrid("getChecked");
+            if (row.length < 1) {
+                $.show_alert("提示", "请先勾选要修改的元素");
+                return;
+            }
+            if (row.length > 1) {
+                $.show_alert("提示", "不支持批量修改元素");
+                $("#ui_user_dg").datagrid('clearSelections').datagrid('clearChecked');
+                return;
+            }
+            $("<div/>").dialog({
+                id: "ui_user_edit_dialog",
+                href: "/Item/EditPage",
+                title: "修改元素",
+                height: 460,
+                width: 610,
+                modal: true,
+                buttons: [{
+                    id: "ui_user_edit_btn",
+                    text: '修 改',
+                    handler: function () {
+                        $("#ItemEditForm").form("submit", {
+                            url: "/Item/EditItem",
+                            onSubmit: function (param) {
+                                param.ItemID = $("#txtItemID1").val();
+                                param.ItemName = $("#txtItemName1").val();
+                                param.ItemCode = $("#txtItemCode").val();
+                                param.ItemInteger = $("#txtItemInteger").val();
+                                param.PlusOrMinus = $("#selPlusOrMinus").val();
+                                param.ItemDecimal = $("#txtItemDecimal").val();
+                                param.Units = $("#txtUnits").val();
+                                param.AlarmAreaMin = $("#txtAlarmAreaMin").val();
+                                param.AlarmAreaMax = $("#txtAlarmAreaMax").val();
+                                param.DisplayAreaMin = $("#txtDisplayAreaMin").val();
+                                param.DisplayAreaMax = $("#txtDisplayAreaMax").val();
+                                var validElement = [param.AlarmAreaMin, param.AlarmAreaMax, param.DisplayAreaMin, param.DisplayAreaMax];
+                                var j = 0;
+                                for (var i = 0; i < validElement.length; i++) {
+                                    if (validElement[i] == '') {
+                                        j = j + 1;
+                                    }
+                                }
+                                if (j != 0 && j != 4) {
+                                    $.show_alert("提示", "请将告警和显示区的限值按照规范(只能输入数字)填写完整！");
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');
+                                if (dataJson.success) {
+                                    $("#ui_user_edit_dialog").dialog('destroy');
+                                    $.show_alert("提示", dataJson.msg);
+                                    $("#ui_user_dg").datagrid("reload").datagrid('clearSelections').datagrid('clearChecked');
+                                } else {
+                                    $('#ui_user_edit_btn').linkbutton('enable');
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }, {
+                    text: '取 消',
+                    handler: function () {
+                        $("#ui_user_edit_dialog").dialog('destroy');
+                    }
+                }],
+                onLoad: function () {
+                    var tempPlusOrMinus = "0";
+                    if (row[0].PlusOrMinus == true) {
+                        tempPlusOrMinus="1";
+                    }
+                    $("#txtItemID1").val(row[0].ItemID);
+                    $("#txtItemName1").val(row[0].ItemName);
+                    $("#txtItemCode").val(row[0].ItemCode);
+                    $("#txtItemInteger").val(row[0].ItemInteger);
+                    $("#selPlusOrMinus").val(tempPlusOrMinus);
+                    $("#txtItemDecimal").val(row[0].ItemDecimal);
+                    $("#txtUnits").val(row[0].Units);
+
+                    $("#txtAlarmAreaMin").val( row[0].AlarmAreaMin);
+                    $('#txtAlarmAreaMax').val( row[0].AlarmAreaMax);
+                    $("#txtDisplayAreaMin").val(row[0].DisplayAreaMin);
+                    $('#txtDisplayAreaMax').val(row[0].DisplayAreaMax);
+
+
+                },
+                onClose: function () {
+                    $("#ui_user_edit_dialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+
+        function deleteButton() {
+            var rows = $("#ui_user_dg").datagrid("getChecked");
+            if (rows.length < 1) {
+                $.show_alert("提示", "请先勾选要删除的元素");
+                return;
+            }
+            $.messager.confirm('提示', '确定删除选中行吗？', function (r) {
+                if (r) {
+                    var ItemIDs = [];
+                    $.each(rows, function (i, row) {
+                        ItemIDs.push(row.ItemID);
+                    });
+                    $.ajax({
+                        url: "/Item/DelItem",
+                        data: {
+                            IDs: ItemIDs.join(',')
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.success) {
+                                $.show_alert("提示", data.msg);
+                                $("#ui_user_dg").datagrid("reload").datagrid('clearSelections').datagrid('clearChecked');
+                            } else {
+                                $.show_alert("提示", data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function searchButton() {
+            $("#ui_user_dg").datagrid('load', {
+                ItemName: $("#sTxtItemName").val()
+            });
+            $("#ui_Icons_dg").datagrid('clearSelections').datagrid('clearChecked');
+        }
+
+        function removeRel(obj)
+        {
+            var itemID = obj.split('_')[0];
+            var itemTypeID = obj.split('_')[1];
+            $.messager.confirm('提示', '确定解除与分类关系？', function (r) {
+                if (r) {
+                    $.ajax({
+                        url: "/Item/DelItemRel",
+                        data: {
+                            ItemID: itemID, ItemTypeID: itemTypeID,
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.success) {
+                                $("#ui_role_user_dg").datagrid({       //请求数据
+                                    url: "/Item/GetItemTypeList?ItemID=" + itemID
+                                });
+                            } else {
+                                $.show_alert("提示", data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function setItemTypeButton()
+        {
+
+            var row = $("#ui_user_dg").datagrid("getChecked");
+            if (row.length < 1) {
+                $.show_alert("提示", "请先勾选要分配类型的元素");
+                return;
+            }
+            if (row[0].ParentId == 0 || row[0].ParentId == "") {
+                $.show_alert("提示", "根节点无法分配元素");
+                $("#ui_user_dg").datagrid('clearSelections').datagrid('clearChecked');
+                return;
+            }
+            $("<div/>").dialog({
+                id: "setmenubuttondialog",
+                href: "/Item/SetItemTypePage",
+                title: "设置元素分类关系",
+                height: 220,
+                width: 400,
+                modal: true,
+                buttons: [{
+                    id: "btnmenubuttonsave",
+                    text: '保 存',
+                    handler: function () {
+                        $("#SetItemTypeForm").form("submit", {
+                            url: "/Item/SetItemType",
+                            onSubmit: function (param) {
+                                $('#btnmenubuttonsave').linkbutton('disable');
+                                param.ItemID = $("#txtItemID1").val();
+                                param.ItemTypeID = $("#comboxrole").combobox("getValues").toString();
+                                param.ItemIndex = $("#txtItemIndex1").numberspinner('getValue');
+                                if ($(this).form('validate')) {
+                                    return true;
+                                }
+                                else {
+                                    $('#btnmenubuttonsave').linkbutton('enable');   //恢复按钮
+                                    return false;
+                                }
+                            },
+                            success: function (data) {
+                                var dataJson = eval('(' + data + ')');    //转成json格式
+                                if (dataJson.success) {
+                                    $("#ui_role_user_dg").datagrid({       //请求数据
+                                        url: "/Item/GetItemTypeList?ItemID=" + dataJson.data
+                                    });
+                                    $("#setmenubuttondialog").dialog('destroy');  //销毁dialog对象
+                                    $.show_alert("提示", dataJson.msg);
+                                } else {
+                                    $('#btnmenubuttonsave').linkbutton('enable');    //恢复按钮
+                                    $.show_alert("提示", dataJson.msg);
+                                }
+                            }
+                        });
+                    }
+                }],
+                onLoad: function () {
+                    $("#txtItemID1").val(row[0].ItemID);
+                    $("#txtItemName1").val(row[0].ItemName);
+                },
+                onClose: function () {
+                    $("#setmenubuttondialog").dialog('destroy');  //销毁dialog对象
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="hidden" id="menuId" value="@ViewBag.MenuId" />
+    <div id="ui_user_search" class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'north',split:true,border:true,collapsed:false" title="搜索条件" style="height:72px;">
+            <div id="ui_user_search">
+                <table class="tableForm" style="height:28px;background:#f5f5f5;">
+                    <tr>
+                        <th>
+                            元素名称：
+                        </th>
+                        <td>
+                            <input name="sTxtItemName" id="sTxtItemName" class="easyui-validatebox textbox" style="width:170px;height:22px;" />
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                               onclick="searchButton();">搜索</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-options="region:'east',split:true,border:true,collapsed:true" title="项目元素"
+             style="width: 480px;">
+            <table id="ui_role_user_dg" data-options="fit:true,border:false"></table>
+        </div>
+
+
+        <div data-options="region:'center',border:false">
+            <table id="ui_user_dg" data-options="fit:true,border:false"></table>
+        </div>
+    </div>
+
+</body>
+</html>

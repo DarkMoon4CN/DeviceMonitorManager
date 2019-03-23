@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>增加告警信息</title>
+</head>
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="AlarmConditionAddForm" method="post" action="">
+            <table class="tableForm" width="100%">
+                <tr>
+                    <th>
+                         项目名称：
+                    </th>
+                    <td>
+                        <input class="easyui-combobox" id="STCD1" name="STCD1" style="width:170px;height:22px;" data-options="url:'/AlarmCondition/GetLocalInfo'
+                                                                                        ,editable:false,required:true,valueField:'STCD',textField:'NiceName',
+                                                                                        onSelect:function(rec){
+                                                                                         var url = '/AlarmCondition/GetItem?STCD='+rec.STCD;
+                                                                                         $('#ItemID1').combobox('reload',null);
+                                                                                         $('#ItemID1').combobox('reload', url);
+                                                                                         }" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        元素名称：
+                    </th>
+                    <td>
+                        <input class="easyui-combobox" id="ItemID1" name="ItemID1" style="width:170px;height:22px;" data-options="required:true,editable:false,valueField:'ItemID',textField:'ItemName'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警条件：
+                    </th>
+                    <td>
+                        <select id="Condition1"  class="easyui-combobox" style="width:170px;">
+                            <option value="1" selected>大于</option>
+                            <option value="2">小于</option>
+                            <option value="3">等于</option>
+                            <option value="4">大于等于</option>
+                            <option value="5">小于等于</option>
+                            <option value="6">时长超过</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        数据值：
+                    </th>
+                    <td>
+                        <input type="text" name="DATAVALUE1" id="DATAVALUE1" class="easyui-validatebox textbox"
+                               data-options="required:true" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        告警等级：
+                    </th>
+                    <td>
+                        <input name="AlarmLevel1" id="AlarmLevel1" value="1" class="easyui-numberspinner"
+                               data-options="required:true,min:1,max:5,editable:true" autocomplete="off" style="width:70px;height:22px;" />
+                      
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

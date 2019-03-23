@@ -1,0 +1,16 @@
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ChuanYe.Utils.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ChuanYe.Utils.pdb
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\itextsharp.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\log4net.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\NPOI.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\NPOI.OOXML.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\NPOI.OpenXml4Net.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\NPOI.OpenXmlFormats.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ServiceStack.Common.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ServiceStack.Interfaces.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ServiceStack.Redis.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\ServiceStack.Text.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Release\itextsharp.xml
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Release\ChuanYe.Utils.dll
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Release\ChuanYe.Utils.pdb
+D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Release\ChuanYe.Utils.csprojResolveAssemblyReference.cache

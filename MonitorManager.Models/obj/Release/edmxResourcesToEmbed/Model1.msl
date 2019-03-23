@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MonitorManagerModelStoreContainer" CdmEntityContainer="MonitorManagerEntities">
+    <EntitySetMapping Name="B_AppAuthor">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_AppAuthor">
+        <MappingFragment StoreEntitySet="B_AppAuthor">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AuthorType" ColumnName="AuthorType" />
+          <ScalarProperty Name="SafeCode" ColumnName="SafeCode" />
+          <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+          <ScalarProperty Name="AppId" ColumnName="AppId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbButton">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbButton">
+        <MappingFragment StoreEntitySet="B_TbButton">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbIcon">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbIcon">
+        <MappingFragment StoreEntitySet="B_TbIcon">
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="IconCssInfo" ColumnName="IconCssInfo" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbMenu">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbMenu">
+        <MappingFragment StoreEntitySet="B_TbMenu">
+          <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="LinkAddress" ColumnName="LinkAddress" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbMenuButton">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbMenuButton">
+        <MappingFragment StoreEntitySet="B_TbMenuButton">
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="ButtonId" ColumnName="ButtonId" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbRole">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbRole">
+        <MappingFragment StoreEntitySet="B_TbRole">
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbRoleMenu">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbRoleMenu">
+        <MappingFragment StoreEntitySet="B_TbRoleMenu">
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbRoleMenuButton">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbRoleMenuButton">
+        <MappingFragment StoreEntitySet="B_TbRoleMenuButton">
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="ButtonId" ColumnName="ButtonId" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbUser">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbUser">
+        <MappingFragment StoreEntitySet="B_TbUser">
+          <ScalarProperty Name="WorkNumber" ColumnName="WorkNumber" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Updater" ColumnName="Updater" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IfChangePwd" ColumnName="IfChangePwd" />
+          <ScalarProperty Name="IsAble" ColumnName="IsAble" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="B_TbUserRole">
+      <EntityTypeMapping TypeName="MonitorManagerModel.B_TbUserRole">
+        <MappingFragment StoreEntitySet="B_TbUserRole">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Center_RTUChange">
+      <EntityTypeMapping TypeName="MonitorManagerModel.Center_RTUChange">
+        <MappingFragment StoreEntitySet="Center_RTUChange">
+          <ScalarProperty Name="DTime" ColumnName="DTime" />
+          <ScalarProperty Name="RTUCount" ColumnName="RTUCount" />
+          <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Center_Server">
+      <EntityTypeMapping TypeName="MonitorManagerModel.Center_Server">
+        <MappingFragment StoreEntitySet="Center_Server">
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="SrartTime" ColumnName="SrartTime" />
+          <ScalarProperty Name="RunState" ColumnName="RunState" />
+          <ScalarProperty Name="DTime" ColumnName="DTime" />
+          <ScalarProperty Name="RTUCount" ColumnName="RTUCount" />
+          <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+          <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+          <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Center_StartState">
+      <EntityTypeMapping TypeName="MonitorManagerModel.Center_StartState">
+        <MappingFragment StoreEntitySet="Center_StartState">
+          <ScalarProperty Name="DTime" ColumnName="DTime" />
+          <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+          <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ElementsChartsInfo_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.ElementsChartsInfo_Tab">
+        <MappingFragment StoreEntitySet="ElementsChartsInfo_Tab">
+          <ScalarProperty Name="AlarmAreaMin" ColumnName="AlarmAreaMin" />
+          <ScalarProperty Name="AlarmAreaMax" ColumnName="AlarmAreaMax" />
+          <ScalarProperty Name="DisplayAreaMin" ColumnName="DisplayAreaMin" />
+          <ScalarProperty Name="DisplayAreaMax" ColumnName="DisplayAreaMax" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocaInfo_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.LocaInfo_Tab">
+        <MappingFragment StoreEntitySet="LocaInfo_Tab">
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="LocaManager" ColumnName="LocaManager" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_COMMAND_TEMP">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_COMMAND_TEMP">
+        <MappingFragment StoreEntitySet="YY_COMMAND_TEMP">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="CommandID" ColumnName="CommandID" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_AUTO">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_AUTO">
+        <MappingFragment StoreEntitySet="YY_DATA_AUTO">
+          <ScalarProperty Name="STTYPE" ColumnName="STTYPE" />
+          <ScalarProperty Name="DATATYPE" ColumnName="DATATYPE" />
+          <ScalarProperty Name="CorrectionVALUE" ColumnName="CorrectionVALUE" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_COMMAND">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_COMMAND">
+        <MappingFragment StoreEntitySet="YY_DATA_COMMAND">
+          <ScalarProperty Name="Command" ColumnName="Command" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="CommandID" ColumnName="CommandID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_GPS">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_GPS">
+        <MappingFragment StoreEntitySet="YY_DATA_GPS">
+          <ScalarProperty Name="IsRealTime" ColumnName="IsRealTime" />
+          <ScalarProperty Name="LocType" ColumnName="LocType" />
+          <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+          <ScalarProperty Name="Bearing" ColumnName="Bearing" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_IMG">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_IMG">
+        <MappingFragment StoreEntitySet="YY_DATA_IMG">
+          <ScalarProperty Name="DATATYPE" ColumnName="DATATYPE" />
+          <ScalarProperty Name="INFO" ColumnName="INFO" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_LOG">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_LOG">
+        <MappingFragment StoreEntitySet="YY_DATA_LOG">
+          <ScalarProperty Name="ERC" ColumnName="ERC" />
+          <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="LOGID" ColumnName="LOGID" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_MANUAL">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_MANUAL">
+        <MappingFragment StoreEntitySet="YY_DATA_MANUAL">
+          <ScalarProperty Name="DATATYPE" ColumnName="DATATYPE" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_ONLINE">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_ONLINE">
+        <MappingFragment StoreEntitySet="YY_DATA_ONLINE">
+          <ScalarProperty Name="Heartbeat" ColumnName="Heartbeat" />
+          <ScalarProperty Name="DATACOUNT" ColumnName="DATACOUNT" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_REM">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_REM">
+        <MappingFragment StoreEntitySet="YY_DATA_REM">
+          <ScalarProperty Name="DATATYPE" ColumnName="DATATYPE" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_STATE">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_STATE">
+        <MappingFragment StoreEntitySet="YY_DATA_STATE">
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="STATEDATA" ColumnName="STATEDATA" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_DATA_Statistic">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_DATA_Statistic">
+        <MappingFragment StoreEntitySet="YY_DATA_Statistic">
+          <ScalarProperty Name="SDVal" ColumnName="SDVal" />
+          <ScalarProperty Name="MSEVal" ColumnName="MSEVal" />
+          <ScalarProperty Name="AvgVal" ColumnName="AvgVal" />
+          <ScalarProperty Name="MinVal" ColumnName="MinVal" />
+          <ScalarProperty Name="MaxVal" ColumnName="MaxVal" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="INTV" ColumnName="INTV" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_ITEM_TI">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_ITEM_TI">
+        <MappingFragment StoreEntitySet="YY_ITEM_TI">
+          <ScalarProperty Name="ItemIndex" ColumnName="ItemIndex" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_ITEMTYPE">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_ITEMTYPE">
+        <MappingFragment StoreEntitySet="YY_ITEMTYPE">
+          <ScalarProperty Name="ItemTypeIndex" ColumnName="ItemTypeIndex" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_LOG">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_LOG">
+        <MappingFragment StoreEntitySet="YY_LOG">
+          <ScalarProperty Name="RTULOG" ColumnName="RTULOG" />
+          <ScalarProperty Name="LOGID" ColumnName="LOGID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_Basic">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_Basic">
+        <MappingFragment StoreEntitySet="YY_RTU_Basic">
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="NiceName" ColumnName="NiceName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_BI">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_BI">
+        <MappingFragment StoreEntitySet="YY_RTU_BI">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_COMMAND">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_COMMAND">
+        <MappingFragment StoreEntitySet="YY_RTU_COMMAND">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CommandID" ColumnName="CommandID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_CONFIGDATA">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_CONFIGDATA">
+        <MappingFragment StoreEntitySet="YY_RTU_CONFIGDATA">
+          <ScalarProperty Name="ConfigVal" ColumnName="ConfigVal" />
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_CONFIGITEM">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_CONFIGITEM">
+        <MappingFragment StoreEntitySet="YY_RTU_CONFIGITEM">
+          <ScalarProperty Name="ConfigItem" ColumnName="ConfigItem" />
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_ITEM">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_ITEM">
+        <MappingFragment StoreEntitySet="YY_RTU_ITEM">
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_WATERYIELD">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_WATERYIELD">
+        <MappingFragment StoreEntitySet="YY_RTU_WATERYIELD">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="STR_PAD" ColumnName="STR_PAD" />
+          <ScalarProperty Name="STREAM" ColumnName="STREAM" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_WRES">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_WRES">
+        <MappingFragment StoreEntitySet="YY_RTU_WRES">
+          <ScalarProperty Name="SatelliteNum" ColumnName="SatelliteNum" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PORT_B" ColumnName="PORT_B" />
+          <ScalarProperty Name="ADR_B" ColumnName="ADR_B" />
+          <ScalarProperty Name="COM_B" ColumnName="COM_B" />
+          <ScalarProperty Name="PORT_M" ColumnName="PORT_M" />
+          <ScalarProperty Name="ADR_M" ColumnName="ADR_M" />
+          <ScalarProperty Name="COM_M" ColumnName="COM_M" />
+          <ScalarProperty Name="ADR_ZX" ColumnName="ADR_ZX" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_STATE">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_STATE">
+        <MappingFragment StoreEntitySet="YY_STATE">
+          <ScalarProperty Name="RTUSTATE" ColumnName="RTUSTATE" />
+          <ScalarProperty Name="STATEID" ColumnName="STATEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_RTU_ITEMCONFIG">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_RTU_ITEMCONFIG">
+        <MappingFragment StoreEntitySet="YY_RTU_ITEMCONFIG">
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_LocaInfo_YY_RTU_ITEM">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_LocaInfo_YY_RTU_ITEM">
+        <MappingFragment StoreEntitySet="View_LocaInfo_YY_RTU_ITEM">
+          <ScalarProperty Name="ItemTypeIndex" ColumnName="ItemTypeIndex" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+          <ScalarProperty Name="ItemIndex" ColumnName="ItemIndex" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_YY_RTU_ITEM">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_YY_RTU_ITEM">
+        <MappingFragment StoreEntitySet="View_YY_RTU_ITEM">
+          <ScalarProperty Name="ItemTypeIndex" ColumnName="ItemTypeIndex" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+          <ScalarProperty Name="ItemIndex" ColumnName="ItemIndex" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_YY_RTU_ITEM_Alarm">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_YY_RTU_ITEM_Alarm">
+        <MappingFragment StoreEntitySet="View_YY_RTU_ITEM_Alarm">
+          <ScalarProperty Name="AlarmAreaMax" ColumnName="AlarmAreaMax" />
+          <ScalarProperty Name="AlarmAreaMin" ColumnName="AlarmAreaMin" />
+          <ScalarProperty Name="DisplayAreaMax" ColumnName="DisplayAreaMax" />
+          <ScalarProperty Name="DisplayAreaMin" ColumnName="DisplayAreaMin" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_YY_RTU_ItemType">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_YY_RTU_ItemType">
+        <MappingFragment StoreEntitySet="View_YY_RTU_ItemType">
+          <ScalarProperty Name="ItemTypeIndex" ColumnName="ItemTypeIndex" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="ItemIndex" ColumnName="ItemIndex" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Image_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.Image_Tab">
+        <MappingFragment StoreEntitySet="Image_Tab">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_YY_DATA_AUTO">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_YY_DATA_AUTO">
+        <MappingFragment StoreEntitySet="View_YY_DATA_AUTO">
+          <ScalarProperty Name="PlusOrMinus" ColumnName="PlusOrMinus" />
+          <ScalarProperty Name="ItemInteger" ColumnName="ItemInteger" />
+          <ScalarProperty Name="ItemDecimal" ColumnName="ItemDecimal" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="NiceName" ColumnName="NiceName" />
+          <ScalarProperty Name="STTYPE" ColumnName="STTYPE" />
+          <ScalarProperty Name="DATATYPE" ColumnName="DATATYPE" />
+          <ScalarProperty Name="CorrectionVALUE" ColumnName="CorrectionVALUE" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="NFOINDEX" ColumnName="NFOINDEX" />
+          <ScalarProperty Name="DOWNDATE" ColumnName="DOWNDATE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlarmCondition_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.AlarmCondition_Tab">
+        <MappingFragment StoreEntitySet="AlarmCondition_Tab">
+          <ScalarProperty Name="AlarmLevel" ColumnName="AlarmLevel" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Alarm_LocalInfo_Item">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_Alarm_LocalInfo_Item">
+        <MappingFragment StoreEntitySet="View_Alarm_LocalInfo_Item">
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="NiceName" ColumnName="NiceName" />
+          <ScalarProperty Name="AlarmLevel" ColumnName="AlarmLevel" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlarmUser_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.AlarmUser_Tab">
+        <MappingFragment StoreEntitySet="AlarmUser_Tab">
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="OpenId" ColumnName="OpenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlarmInfo_Tab">
+      <EntityTypeMapping TypeName="MonitorManagerModel.AlarmInfo_Tab">
+        <MappingFragment StoreEntitySet="AlarmInfo_Tab">
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="AlarmTime" ColumnName="AlarmTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="AlarmLevel" ColumnName="AlarmLevel" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="AlarmId" ColumnName="AlarmId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_AlarmInfo_LocalInfo_Item">
+      <EntityTypeMapping TypeName="MonitorManagerModel.View_AlarmInfo_LocalInfo_Item">
+        <MappingFragment StoreEntitySet="View_AlarmInfo_LocalInfo_Item">
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="NiceName" ColumnName="NiceName" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="AlarmTime" ColumnName="AlarmTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="AlarmLevel" ColumnName="AlarmLevel" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+          <ScalarProperty Name="AlarmId" ColumnName="AlarmId" />
+          <ScalarProperty Name="TempID" ColumnName="TempID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YY_HS_DATA_AUTO">
+      <EntityTypeMapping TypeName="MonitorManagerModel.YY_HS_DATA_AUTO">
+        <MappingFragment StoreEntitySet="YY_HS_DATA_AUTO">
+          <ScalarProperty Name="FFT" ColumnName="FFT" />
+          <ScalarProperty Name="DATAVALUE" ColumnName="DATAVALUE" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="STCD" ColumnName="STCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

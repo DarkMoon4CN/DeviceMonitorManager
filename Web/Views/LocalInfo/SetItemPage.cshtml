@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>设置元素</title>
+</head>
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="SetMenuButtonForm" method="post" action="">
+            <table class="tableForm" width="100%">
+                <tr>
+                    <th>
+                        项目编号：
+                    </th>
+                    <td>
+                        <input type="text" name="STCD2" id="STCD2" class="easyui-validatebox textbox" readonly
+                               data-options="required:false" style="width:170px;height:22px;" disabled="disabled" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        项目名称：
+                    </th>
+                    <td>
+                        <input type="text" name="NiceName2" id="NiceName2" class="easyui-validatebox textbox" readonly
+                               data-options="required:false" style="width:170px;height:22px;" disabled="disabled" />
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th>
+                        元素：
+                    </th>
+                    <td>
+                        <select id="comButtonTree" name="comButtonTree" class="easyui-combotree" data-options="url:'/LOcalInfo/GetAllItem',editable:false,valueField:'id',textField:'text',multiple:true" style="width:170px;height:22px;"></select>
+                        <img style="cursor: pointer; vertical-align: middle;" onclick="$('#comButtonTree').combotree('clear');"
+                             alt="清空" title="清空" src="../Content/themes/icon/edit-clear.png" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

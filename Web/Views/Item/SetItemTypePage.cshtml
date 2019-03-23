@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>设置元素分类关系</title>
+</head>
+<body>
+    <div style="padding: 15px; overflow: hidden">
+        <form id="SetItemTypeForm" method="post" action="">
+            <table class="tableForm" width="100%">
+                <tr>
+                    <th>
+                        元素名称：
+                    </th>
+                    <td>
+                        <input type="hidden" name="txtItemID1" id="txtItemID1" />
+                        <input type="text" name="txtItemName1" id="txtItemName1" class="easyui-validatebox textbox" readonly
+                               data-options="required:true,validType:'length[2,20]'" style="width:170px;height:22px;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        元素分类：
+                    </th>
+                    <td>
+                        <input class="easyui-combobox" id="comboxrole" name="comboxrole" style="width:170px;height:22px;" data-options="url:'/Item/GetItemType2',editable:false,valueField:'ItemTypeID',textField:'ItemType'" />
+                        <img style="cursor: pointer; vertical-align: middle;" onclick="$('#comboxrole').combobox('clear');"
+                             alt="清空" title="清空" src="../Content/themes/icon/edit-clear.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        排序：
+                    </th>
+                    <td>
+                        <input name="txtItemIndex1" id="txtItemIndex1" value="1" class="easyui-numberspinner"
+                               data-options="required:true,min:1,max:1000,editable:true" autocomplete="off" style="width:70px;height:22px;" />
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

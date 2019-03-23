@@ -1,0 +1,174 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>川页公司综合管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/ico" href="~/Content/themes/icon/user_home.png" />
+    <link href="~/Scripts/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Content/js/common.js"></script>
+    <link href="~/Content/themes/table.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',border:false" style="height: 60px; background-color: #F5F5F5; padding: 10px; font-size: x-large;">
+        <img src="~/Content/images/Logo.png" /> 川页公司综合管理系统
+        <div style="position: absolute; right: 5px; top: 10px;">
+            欢迎您：<span style="color: #0082ff; ">@ViewBag.RealName</span>  @ViewBag.TimeView   @ViewBag.DayDate
+            <a id="logOut" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-stop'">
+                退出系统
+            </a>
+        </div>
+        @*<div style="position: absolute; right: 0px; bottom: 0px; ">
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-set1'" >
+                修改密码
+            </a>
+           
+        </div>*@
+    </div>
+
+    <div data-options="region:'west',split:true,title:'功能导航'" style="width: 180px; background-color: white;">
+        <div id="RightAccordion" class="easyui-accordion">
+        </div>
+    </div>
+    <div data-options="region:'center'">
+        <div id="tabs" class="easyui-tabs" fit="true" border="false" 
+             data-options="tools:[{iconCls:'icon-arrow_refresh',text:'刷新',handler:refreshTab},{iconCls:'icon-delete3' ,text:'关闭全部',handler:closeTab}]">
+            @*<div id="home" title="我的主页" data-options="iconCls:'icon-house',closable:false" style="padding:10px">
+                  默认页面
+            </div>*@
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $("#logOut").click(function () {
+            window.location.href = "/Home/LogOut";
+        });
+        refreshTree();
+       
+    });
+    function refreshTree()
+    {
+        $("#RightAccordion").accordion({
+            fillSpace: true,
+            fit: true,
+            border: false,
+            animate: false
+        });
+        $.post("/Home/GetTreeByEasyui", { "parentId": "0" }, function (data) {
+            if (data.Status == 0) {
+                window.location.href = '/Login/Index';
+            }
+            var firstClickId = 0;
+            $.each(data.FirstParam, function (i, e) {
+                var id = e.MenuId;
+                $('#RightAccordion').accordion('add', {
+                    title: e.Name,
+                    content: "<ul id='tree" + id + "' ></ul>",
+                    selected: true,
+                    iconCls: e.iconCls,
+                });
+                $.parser.parse();
+                $.post("/Home/GetTreeByEasyui", { "parentId": id }, function (data) {
+                    var temp = data.FirstParam;
+                    var mydata = [];
+                    for (var i = 0; i < temp.length; i++) {
+                        mydata.push({
+                            id: temp[i].MenuId, attributes: temp[i].LinkAddress, iconCls: temp[i].Icon, state: "open", children: null,
+                            text: temp[i].Name
+                        });
+                    }
+                    $("#tree" + id).tree({
+                        data: mydata,
+                        onBeforeExpand: function (node, param) {
+                            $("#tree" + id).tree('options').url = "/Home/GetTreeByEasyui?parentId=" + node.id;
+                        },
+                        onClick: function (node) {
+                            if (node.state == 'closed') {
+                                $(this).tree('expand', node.target);
+                            } else if (node.state == 'open') {
+                                $(this).tree('collapse', node.target);
+                                var tabTitle = node.text;
+                                var url = node.attributes + "?menuId=" + node.id;
+                                var icon = node.iconCls;
+                                addTab(tabTitle, url, icon);
+                            }
+                        }
+                    });
+                    //if (firstClickId == 0) {
+                    //    var node = $("#tree" + id).tree('find', mydata[0].id);
+                    //    $("#tree" + id).tree('select', node.target);
+                    //    firstClickId = id;
+                    //}
+                });
+                
+            });
+          
+        });
+    }
+
+ 
+
+    //绑定前台菜单栏 
+    function BindTreeData() {
+        $('#LeftMenuTree').tree({    //初始化左侧功能树（不同用户显示的树是不同的）
+            method: 'GET',
+            url: '/Home/LoadMenuData',
+            lines: true,
+            onClick: function (node) {    //点击左侧的tree节点  打开右侧tabs显示内容
+                if (node.attributes) {
+                    addTab(node.text, node.attributes.url, node.iconCls);
+                }
+            }
+        });
+    }
+
+    //选项卡
+    function addTab(subtitle, url, icon) {
+        var strHtml = '<iframe id="frmWorkArea" width="99.5%" height="99%" style="padding:1px;" frameborder="0" scrolling="yes" src="' + url + '"></iframe>';
+        if (!$('#tabs').tabs('exists', subtitle)) {
+            $('#tabs').tabs('add', {
+                title: subtitle,
+                content: strHtml,
+                iconCls: icon,
+                closable: true,
+                loadingMessage: '正在加载中......'
+            });
+        } else {
+            $('#tabs').tabs('select', subtitle);
+        }
+    }
+    //刷新选项卡
+    function refreshTab() {
+        var index = $('#tabs').tabs('getTabIndex', $('#tabs').tabs('getSelected'));
+        if (index != -1) {
+            var tab = $('#tabs').tabs('getTab', index);
+            $('#tabs').tabs('update', {
+                tab: tab,
+                options: {
+                    selected: true
+                }
+            });
+        }
+    }
+
+    //关闭选项卡
+    function closeTab() {
+        $('.tabs-inner span').each(function (i, n) {
+            var t = $(n).text();
+            if (t != '') {
+                if (t != "我的主页") {
+                    $('#tabs').tabs('close', t);
+                }
+            }
+        });
+    }
+</script>
