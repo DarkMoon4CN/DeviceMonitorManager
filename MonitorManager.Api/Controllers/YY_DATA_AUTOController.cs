@@ -94,7 +94,7 @@ namespace MonitorManager.Api.Controllers
                                && item.Condition.ItemIDs != null && item.Condition.ItemIDs.Count > 0)
                         {
                             var data = obj.List.Where(p => p.STCD == item.Condition.STCD && item.Condition.ItemIDs.Contains(p.ItemID))
-                                                       .ToList();
+                                                       .ToList(); 
                             List<YY_DATA_AUTOResponse> deepCopy =
                                                        data.SerializeJSON().DeserializeJSON<List<YY_DATA_AUTOResponse>>();
                             foreach (var condition in deepCopy)
@@ -102,7 +102,10 @@ namespace MonitorManager.Api.Controllers
                                 decimal dataValue = condition.DATAVALUE == null ? (decimal)0.00 : condition.DATAVALUE.Value;
                                 condition.AlarmsLevels = ConditionLogic(condition.STCD, condition.ItemID, dataValue);
                             }
-                            hub.Clients.Client(connectionId).Callback(deepCopy.SerializeJSON());
+                            if (deepCopy != null && deepCopy.Count > 0)
+                            {
+                                hub.Clients.Client(connectionId).Callback(deepCopy.SerializeJSON());
+                            }
                         }
                         else if(item.Condition != null && !string.IsNullOrEmpty(item.Condition.STCD))
                         {
@@ -114,7 +117,11 @@ namespace MonitorManager.Api.Controllers
                                 decimal dataValue = condition.DATAVALUE == null ? (decimal)0.00 : condition.DATAVALUE.Value;
                                 condition.AlarmsLevels = ConditionLogic(condition.STCD, condition.ItemID, dataValue);
                             }
-                            hub.Clients.Client(connectionId).Callback(deepCopy.SerializeJSON());
+
+                            if (deepCopy != null && deepCopy.Count > 0)
+                            {
+                                hub.Clients.Client(connectionId).Callback(deepCopy.SerializeJSON());
+                            }
                         }
                     }
                 }
