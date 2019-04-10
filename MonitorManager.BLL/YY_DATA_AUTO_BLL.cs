@@ -151,7 +151,7 @@ namespace MonitorManager.BLL
                                TM=d.TM,
                                Units=a.Units,
                                ItemTypeIndex=a.ItemTypeIndex,
-                               ItemIndex = a.ItemIndex
+                               ItemIndex = a.ItemIndex,
                                //AlarmsLevels 字段由外部逻辑二次填充
                            };
                 if (startTime != null && startTime == endTime)

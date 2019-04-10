@@ -25,4 +25,3 @@ D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\bin\Debug\itextsharp.xml
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Debug\ChuanYe.Utils.dll
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Debug\ChuanYe.Utils.pdb
-D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.Utils\obj\Debug\ChuanYe.Utils.csprojResolveAssemblyReference.cache

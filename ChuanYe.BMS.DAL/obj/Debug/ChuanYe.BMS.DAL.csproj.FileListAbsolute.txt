@@ -23,4 +23,3 @@ D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.BMS.DAL\bi
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.BMS.DAL\bin\Debug\Newtonsoft.Json.xml
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.BMS.DAL\obj\Debug\ChuanYe.BMS.DAL.dll
 D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.BMS.DAL\obj\Debug\ChuanYe.BMS.DAL.pdb
-D:\Development\NET\temp\BasicsManageSystem\BasicsManageSystem\ChuanYe.BMS.DAL\obj\Debug\ChuanYe.BMS.DAL.csprojResolveAssemblyReference.cache

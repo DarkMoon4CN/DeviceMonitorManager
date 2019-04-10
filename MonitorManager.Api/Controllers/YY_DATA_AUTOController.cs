@@ -369,15 +369,27 @@ namespace MonitorManager.Api.Controllers
                     dr[5] = temp.TM.ToString("yyyy-MM-dd HH:mm:ss");
                     dt.Rows.Add(dr);
                 }
-                var exist = list.Where(p => p.ItemTypeID == obj.ItemTypeID).FirstOrDefault();
+               
                 string excelName = string.Empty;
-                if (exist != null)
+
+                var stcdExist=  LocalInfoBLL.Instance.GetAll(obj.STCD).FirstOrDefault();
+
+                var typExist = list.Where(p => p.ItemTypeID == obj.ItemTypeID).FirstOrDefault();
+
+                if (stcdExist != null)
                 {
-                    excelName = exist.ItemName + exist.ItemTypeName;
+                    excelName += stcdExist.NiceName;
                 }
-                else
+                if (typExist != null)
                 {
-                    excelName = "";
+                    if (obj.ItemIDs != null && obj.ItemIDs.Count ==1)
+                    {
+                        excelName += typExist.ItemTypeName + typExist.ItemName;
+                    }
+                    else
+                    {
+                        excelName += typExist.ItemTypeName;
+                    }
                 }
                 string footerStr = "操作人：{0}     时间：{1}";
                 footerStr = string.Format(footerStr, obj.Operator, DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒"));
@@ -686,15 +698,26 @@ namespace MonitorManager.Api.Controllers
                         }
                         dt.Rows.Add(dr);
                     }
-                    var exist = LocalInfoBLL.Instance.GetAll(obj.STCD).FirstOrDefault();
+
                     string excelName = string.Empty;
-                    if (exist != null)
+                    var stcdExist = LocalInfoBLL.Instance.GetAll(obj.STCD).FirstOrDefault();
+                    var typExist = ItemTypeBLL.Instance.GetItemTypeByID(obj.ItemTypeID);
+                   
+                    if (stcdExist != null)
                     {
-                        excelName = exist.NiceName;
+                        excelName += stcdExist.NiceName;
                     }
-                    else
+                    if (typExist != null)
                     {
-                        excelName = string.Empty;
+                        if (obj.ItemIDs != null && obj.ItemIDs.Count == 1)
+                        {
+                            var itemExist = ItemBLL.Instance.GetItem(obj.ItemIDs[0]).FirstOrDefault();
+                            excelName += typExist.ItemType + itemExist != null ? itemExist.ItemName:string.Empty;
+                        }
+                        else
+                        {
+                            excelName += typExist.ItemType;
+                        }
                     }
                     string footerStr = "操作人：{0}     时间：{1}";
                     footerStr = string.Format(footerStr, obj.Operator, DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒"));

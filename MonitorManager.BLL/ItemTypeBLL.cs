@@ -50,6 +50,15 @@ namespace MonitorManager.BLL
             }
         }
 
+
+        public YY_ITEMTYPE GetItemTypeByID(string itemTypeID)
+        {
+            using (MonitorManagerEntities ef = new MonitorManagerEntities())
+            {
+                return ef.YY_ITEMTYPE.Where(p => p.ItemTypeID == itemTypeID).FirstOrDefault();
+            }
+        }
+
         public int AddItemType(YY_ITEMTYPE info)
         {
             using (MonitorManagerEntities ef = new MonitorManagerEntities())
