@@ -174,7 +174,7 @@ namespace MonitorManager.BLL
         }
 
 
-        public List<YY_DATA_AUTOTabSearchResponse> GetLastDataByTM(string stcd, List<string> itemIDs, string itemTypeID)
+        public List<YY_DATA_AUTOTabSearchResponse> GetLastDataByTM(string stcd, List<string> itemIDs, string itemTypeID, DateTime? endTIme)
         {
             using (MonitorManagerEntities ef = new MonitorManagerEntities())
             {
@@ -195,7 +195,7 @@ namespace MonitorManager.BLL
                 var linq = from a in data
                            join b in ef.YY_DATA_AUTO on new { a.STCD, a.ItemID } equals new { b.STCD, b.ItemID }
                            into c
-                           from d in c.DefaultIfEmpty()
+                           let d = c.Where(p=>p.TM <=endTIme).OrderByDescending(o => o.TM).FirstOrDefault()
                            select new YY_DATA_AUTOTabSearchResponse
                            {
                                STCD = a.STCD,
@@ -210,14 +210,14 @@ namespace MonitorManager.BLL
                                ItemIndex = a.ItemIndex
                                //AlarmsLevels 字段由外部逻辑二次填充
                            };
-                return linq.OrderByDescending(o => o.TM).Take(1).ToList();
+                return linq.ToList();
             }
         }
 
 
         public List<YY_DATA_AUTOTabSearchResponse> GetDataForOneByPage(string stcd, List<string> itemIDs, string itemTypeID,RequstPageBase page)
         {
-            using (MonitorManagerEntities ef = new MonitorManagerEntities())
+            using ( MonitorManagerEntities ef = new MonitorManagerEntities())
             {
                 var where = PredicateExtensionses.True<View_LocaInfo_YY_RTU_ITEM>();
                 if (!string.IsNullOrEmpty(stcd))
