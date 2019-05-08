@@ -46,8 +46,6 @@ namespace MonitorManager.BLL
             }
         }
 
-
-
         public int AddAlarmCondition(AlarmCondition_Tab info)
         {
             try
@@ -92,6 +90,34 @@ namespace MonitorManager.BLL
             }
         }
 
+
+
+        public List<AlarmCondition_Tab> GetAlarmCondition(string STCD, string itemID,int condition, int alarmLevel)
+        {
+            using (MonitorManagerEntities ef = new MonitorManagerEntities())
+            {
+                var where = PredicateExtensionses.True<AlarmCondition_Tab>();
+                if (!string.IsNullOrEmpty(STCD))
+                {
+                    where = where.And(p => p.STCD.Contains(STCD));
+                }
+                if (!string.IsNullOrEmpty(itemID))
+                {
+                    where = where.And(p => p.ItemID.Contains(itemID));
+                }
+                if (condition > 0)
+                {
+                    where = where.And(p => p.Condition == condition);
+                }
+                if (alarmLevel > 0)
+                {
+                    where = where.And(p => p.AlarmLevel == alarmLevel);
+                }
+                return ef.AlarmCondition_Tab.Where(where).ToList();
+            }
+        }
+
+
         public List<AlarmCondition_Tab> GetAlarmCondition(string STCD, string itemID, int alarmLevel)
         {
             using (MonitorManagerEntities ef = new MonitorManagerEntities())
@@ -121,6 +147,7 @@ namespace MonitorManager.BLL
                 {
                      ef.AlarmCondition_Tab.Where(p => p.ItemID == info.ItemID
                                                          && p.STCD == info.STCD
+                                                         && p.Condition==info.Condition
                                                          && p.AlarmLevel == info.AlarmLevel).Delete();
                     return 1;
                 }
