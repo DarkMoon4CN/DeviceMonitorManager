@@ -70,6 +70,7 @@ namespace MonitorManager.BLL
                 {
                     ef.AlarmCondition_Tab.Where(p => p.ItemID == info.ItemID 
                                                          && p.STCD == info.STCD 
+                                                         && p.Condition==info.Condition
                                                          && p.AlarmLevel==info.AlarmLevel).Update(
                                 u => new AlarmCondition_Tab
                                 {
