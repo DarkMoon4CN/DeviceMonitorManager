@@ -316,7 +316,7 @@ namespace MonitorManager.Api.Controllers
                     info.GroupName = "其他";
                 }
             }
-            else if (itemTypeName.Contains("减速箱"))
+            else if (itemTypeName.Contains("起升开闭机构"))  //减速箱
             {
                 if (itemName.Contains("振动波形"))
                 {
@@ -344,7 +344,7 @@ namespace MonitorManager.Api.Controllers
                     info.GroupName = "其他";
                 }
             }
-            else if (itemTypeName.Contains("卷筒"))
+            else if (itemTypeName.Contains("俯仰机构")) //卷筒
             {
                 if (itemName.Contains("振动波形") || itemName.Contains("减速箱振动波形"))
                 {

@@ -220,7 +220,7 @@ namespace MonitorManager.Api.Controllers
                 var list= YY_DATA_AUTO_BLL.Instance.GetDataForOne(obj.STCD, obj.ItemIDs, obj.ItemTypeID, obj.AppointTime,obj.AppointTime);
                 if (list == null || list.Count == 0)
                 {
-                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID);
+                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID,obj.AppointTime);
                     if (lastData != null && lastData.Count != 0)
                     {
                         DateTime? lastTime = lastData.FirstOrDefault().TM;
@@ -324,11 +324,12 @@ namespace MonitorManager.Api.Controllers
                 var list = YY_DATA_AUTO_BLL.Instance.GetDataForOne(obj.STCD, obj.ItemIDs, obj.ItemTypeID, obj.AppointTime, obj.AppointTime);
                 if (list == null || list.Count == 0)
                 {
-                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID);
+                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID,obj.AppointTime);
                     if (lastData != null && lastData.Count != 0)
                     {
                         DateTime? lastTime = lastData.FirstOrDefault().TM;
-                        list = YY_DATA_AUTO_BLL.Instance.GetDataForOne(obj.STCD, obj.ItemIDs, obj.ItemTypeID, lastTime, lastTime);
+                        list = lastData;
+                            // YY_DATA_AUTO_BLL.Instance.GetDataForOne(obj.STCD, obj.ItemIDs, obj.ItemTypeID, lastTime, lastTime);
                     }
                 }
                 foreach (var condition in list)
@@ -443,7 +444,7 @@ namespace MonitorManager.Api.Controllers
                 DateTime? lastTime = null;
                 if(list==null || list.Count==0)
                 {
-                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID);
+                    var lastData = YY_DATA_AUTO_BLL.Instance.GetLastDataByTM(obj.STCD, obj.ItemIDs, obj.ItemTypeID,obj.AppointTime);
                     if (lastData != null && lastData.Count != 0)
                     {
                         lastTime = lastData.FirstOrDefault().TM;
@@ -454,7 +455,8 @@ namespace MonitorManager.Api.Controllers
                             StartTime = lastTime,
                             EndTime = lastTime,
                         };
-                        list = YY_DATA_AUTO_BLL.Instance.GetDataForOneByPage(obj.STCD, obj.ItemIDs, obj.ItemTypeID, tempPage);
+                        list = lastData;
+                        //YY_DATA_AUTO_BLL.Instance.GetDataForOneByPage(obj.STCD, obj.ItemIDs, obj.ItemTypeID, tempPage);
                         result.SecondParam = tempPage.TotalRows;
                     }
 
