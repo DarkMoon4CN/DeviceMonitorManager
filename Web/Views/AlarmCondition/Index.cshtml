@@ -104,10 +104,9 @@
                             onSubmit: function (param) {
                                 param.STCD = $("#STCD1").combobox("getValues").toString();
                                 param.ItemID = $("#ItemID1").combobox("getValues").toString();
-                                param.Condition = $("#Condition1").val();
+                                param.Condition = $("#Condition1").combobox("getValues").toString();
                                 param.DATAVALUE = $("#DATAVALUE1").val();
                                 param.AlarmLevel = $("#AlarmLevel1").numberspinner('getValue');
-
                                 //param.AlarmAreaMin = $("#txtAlarmAreaMin").val();
                                 //param.AlarmAreaMax = $("#txtAlarmAreaMax").val();
                                 //param.DisplayAreaMin = $("#txtDisplayAreaMin").val();
@@ -276,7 +275,7 @@
                 if (r) {
                     var  del = [];
                     $.each(rows, function (i, row) {
-                        del.push(row.STCD+"_"+row.ItemID+"_"+row.AlarmLevel);
+                        del.push(row.STCD + "_" + row.ItemID + "_" + row.Condition + "_" + row.AlarmLevel);
                     });
                     $.ajax({
                         url: "/AlarmCondition/DelAlarmCondition",
