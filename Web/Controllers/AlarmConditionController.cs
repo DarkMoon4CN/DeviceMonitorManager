@@ -64,7 +64,8 @@ namespace Web.Controllers
 
 
             int alarmLevel = ALWaitConvert.ToInt();
-            var exist = AlarmConditionBLL.Instance.GetAlarmCondition(stcd, itemID, alarmLevel);
+            int cond = condition.ToInt();
+            var exist = AlarmConditionBLL.Instance.GetAlarmCondition(stcd, itemID, cond, alarmLevel);
             if (exist.Count >= 1)
             {
                 return Content("{\"msg\":\"已有相同的告警信息！\",\"success\":false}");
@@ -113,7 +114,8 @@ namespace Web.Controllers
             //string DisplayAreaMax = CheckRequest.GetString("DisplayAreaMax");
 
             int alarmLevel = ALWaitConvert.ToInt();
-            var exist = AlarmConditionBLL.Instance.GetAlarmCondition(stcd, itemID, alarmLevel);
+            int cond = condition.ToInt();
+            var exist = AlarmConditionBLL.Instance.GetAlarmCondition(stcd, itemID,cond, alarmLevel);
             if (exist.Count >= 2)
             {
                 return Content("{\"msg\":\"已有相同的告警信息！\",\"success\":false}");
@@ -176,13 +178,14 @@ namespace Web.Controllers
                     if (temp[i].IndexOf('_') > 0)
                     {
                         var delData =temp[i].Split('_');
-                        if (delData.Length == 3)
+                        if (delData.Length == 4)
                         {
                             AlarmCondition_Tab info = new AlarmCondition_Tab()
                             {
                                 STCD = delData[0],
                                 ItemID = delData[1],
-                                AlarmLevel = Convert.ToInt32(delData[2]),
+                                Condition = Convert.ToInt32(delData[2]),
+                                AlarmLevel = Convert.ToInt32(delData[3]),
                             };
                             result += AlarmConditionBLL.Instance.DelAlarmCondition(info);
                         }
